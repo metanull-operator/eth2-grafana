@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": "",
-  "iteration": 1588954404924,
+  "id": 20,
+  "iteration": 1589317506900,
   "links": [],
   "panels": [
     {
@@ -99,8 +99,13 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
+          "text": "",
           "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
         }
       ],
       "valueName": "current"
@@ -183,8 +188,13 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
+          "text": "",
           "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
         }
       ],
       "valueName": "current"
@@ -267,8 +277,13 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
+          "text": "",
           "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
         }
       ],
       "valueName": "current"
@@ -351,8 +366,13 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
+          "text": "",
           "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
         }
       ],
       "valueName": "current"
@@ -409,7 +429,7 @@
         "justifyMode": "auto",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "(total_voted_target_balances{job=\"$beacon\"} / total_eligible_balances{job=\"$beacon\"} )",
@@ -425,7 +445,7 @@
     },
     {
       "datasource": null,
-      "description": "A metric expressing the distance between the current finalized epoch and the expected finalized epoch based on the genesis time. 100% means the expected and current finalized epochs are the same. The metric reaches 0% when the finalized epoch is 25  epochs behind the expected epoch.",
+      "description": "A metric expressing the distance between the current finalized epoch and the expected finalized epoch based on the genesis time. 100% means the expected and current finalized epochs are the same. The metric reaches 0% when the finalized epoch is 25 epochs behind the expected epoch.",
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -474,7 +494,7 @@
         "justifyMode": "auto",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "clamp_min((1-(4*((floor(beacon_clock_time_slot{job=\"$beacon\"}/32) - beacon_finalized_epoch{job=\"$beacon\"} - 2)/100))),0)",
@@ -495,7 +515,7 @@
       "colorPrefix": false,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
@@ -629,7 +649,7 @@
         "justifyMode": "center",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "sum(rate(log_entries_total{job=\"$beacon\", level=\"error\"}[$__range]))*3600",
@@ -652,8 +672,25 @@
       "type": "stat"
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorValue": true,
+      "colors": [
+        "#73BF69",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": null,
       "description": "The percentage of all validator balances earning returns. Equal to effective balance of all validators divided by the total balance of all validators.",
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -661,50 +698,66 @@
         "y": 1
       },
       "id": 75,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "last"
-          ],
-          "defaults": {
-            "decimals": 2,
-            "mappings": [],
-            "max": 1,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "title": "",
-            "unit": "percentunit"
-          },
-          "overrides": [],
-          "values": false
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto"
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
       },
-      "pluginVersion": "6.7.2",
+      "tableColumn": "",
       "targets": [
         {
           "expr": "validators_total_effective_balance{job=\"$beacon\",state=\"Active\"}/validators_total_balance{job=\"$beacon\",state=\"Active\"}",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
+      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Stake Effectiveness",
-      "type": "stat"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "datasource": null,
@@ -741,7 +794,7 @@
         "justifyMode": "center",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "validator_count{state=\"Pending\",job=\"$beacon\"}",
@@ -802,7 +855,7 @@
         "justifyMode": "center",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "validator_count{state=\"Exited\",job=\"$beacon\"} ",
@@ -839,7 +892,7 @@
         "colorMode": "value",
         "fieldOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "defaults": {
             "decimals": 0,
@@ -862,7 +915,7 @@
         "justifyMode": "center",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "floor(beacon_clock_time_slot{job=\"$beacon\"} / 32)",
@@ -893,46 +946,6 @@
       "type": "stat"
     },
     {
-      "alert": {
-        "alertRuleTags": {},
-        "conditions": [
-          {
-            "evaluator": {
-              "params": [
-                0.66
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "and"
-            },
-            "query": {
-              "params": [
-                "A",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "last"
-            },
-            "type": "query"
-          }
-        ],
-        "executionErrorState": "alerting",
-        "for": "2m",
-        "frequency": "1m",
-        "handler": 1,
-        "message": "Participation Rate is below threshold.",
-        "name": "Participation Rate Alert",
-        "noDataState": "alerting",
-        "notifications": [
-          {
-            "uid": "4N17vdwWk"
-          }
-        ]
-      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -940,7 +953,7 @@
       "datasource": null,
       "description": "The percentage of ETH balances expected to attest that are actually attesting.",
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 4,
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -971,22 +984,23 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": false,
+      "steppedLine": true,
       "targets": [
         {
           "expr": "(total_voted_target_balances{job=\"$beacon\"} / total_eligible_balances{job=\"$beacon\"} )",
           "interval": "",
-          "legendFormat": "Participation Rate",
+          "legendFormat": "participation rate",
           "refId": "A"
         }
       ],
       "thresholds": [
         {
           "colorMode": "critical",
-          "fill": true,
+          "fill": false,
           "line": true,
-          "op": "gt",
-          "value": 0.66
+          "op": "lt",
+          "value": 0.66,
+          "yaxis": "left"
         }
       ],
       "timeFrom": null,
@@ -1031,46 +1045,6 @@
       }
     },
     {
-      "alert": {
-        "alertRuleTags": {},
-        "conditions": [
-          {
-            "evaluator": {
-              "params": [
-                8
-              ],
-              "type": "lt"
-            },
-            "operator": {
-              "type": "and"
-            },
-            "query": {
-              "params": [
-                "A",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "last"
-            },
-            "type": "query"
-          }
-        ],
-        "executionErrorState": "alerting",
-        "for": "2m",
-        "frequency": "1m",
-        "handler": 1,
-        "message": "Peers are below threshold.",
-        "name": "Peers Alert",
-        "noDataState": "alerting",
-        "notifications": [
-          {
-            "uid": "4N17vdwWk"
-          }
-        ]
-      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1078,7 +1052,7 @@
       "datasource": null,
       "description": "The number of peers to which the beacon chain is connected",
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 4,
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -1114,17 +1088,18 @@
         {
           "expr": "p2p_peer_count{state=\"Connected\",job=\"$beacon\"}",
           "interval": "",
-          "legendFormat": "Peers",
+          "legendFormat": "peers",
           "refId": "A"
         }
       ],
       "thresholds": [
         {
           "colorMode": "critical",
-          "fill": true,
+          "fill": false,
           "line": true,
           "op": "lt",
-          "value": 8
+          "value": 8,
+          "yaxis": "left"
         }
       ],
       "timeFrom": null,
@@ -1168,8 +1143,24 @@
       }
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#73BF69",
+        "#73BF69"
+      ],
       "datasource": null,
       "description": "Total active validators",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -1177,36 +1168,43 @@
         "y": 4
       },
       "id": 31,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "green",
-                  "value": 17000
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
       },
-      "pluginVersion": "6.7.2",
+      "tableColumn": "",
       "targets": [
         {
           "expr": "validator_count{job=\"$beacon\", state=\"Active\"}",
@@ -1216,10 +1214,20 @@
           "refId": "A"
         }
       ],
+      "thresholds": "16384",
       "timeFrom": null,
       "timeShift": null,
       "title": "Validators",
-      "type": "stat"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "aliasColors": {},
@@ -1238,6 +1246,7 @@
       },
       "hiddenSeries": false,
       "id": 64,
+      "interval": "",
       "legend": {
         "avg": false,
         "current": true,
@@ -1275,10 +1284,16 @@
           "refId": "B"
         },
         {
-          "expr": "validator_count{state=\"Exiting\",job=\"$beacon\"}",
+          "expr": "-validator_count{state=\"Exiting\",job=\"$beacon\"}",
           "interval": "",
           "legendFormat": "exiting",
           "refId": "A"
+        },
+        {
+          "expr": "-validator_count{state=\"Slashing\",job=\"$beacon\"}",
+          "interval": "",
+          "legendFormat": "slashing",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -1306,7 +1321,7 @@
           "label": "validators",
           "logBase": 1,
           "max": null,
-          "min": "-5",
+          "min": null,
           "show": true
         },
         {
@@ -1347,7 +1362,7 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
+                  "color": "rgb(135, 135, 135)",
                   "value": null
                 }
               ]
@@ -1360,7 +1375,7 @@
         "justifyMode": "center",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "beacon_slot{job=\"$beacon\"}",
@@ -1383,123 +1398,18 @@
       "type": "stat"
     },
     {
-      "datasource": null,
-      "description": "Average validator balance across the network",
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 7
-      },
-      "id": 33,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "last"
-          ],
-          "defaults": {
-            "decimals": 2,
-            "mappings": [],
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "title": ""
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.2",
-      "targets": [
-        {
-          "expr": "validators_total_balance{state=\"Active\",job=\"$beacon\"} / validator_count{state=\"Active\",job=\"$beacon\"} / 1000000000",
-          "interval": "",
-          "legendFormat": "eth",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Avg. Balance",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "The difference between the expected slot based on the genesis time and the current head slot. Ideally this is zero.",
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 7
-      },
-      "id": 43,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "last"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 1
-                }
-              ]
-            },
-            "title": ""
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.2",
-      "targets": [
-        {
-          "expr": "beacon_clock_time_slot-beacon_head_slot{job=\"$beacon\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "slots",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Slots Behind",
-      "type": "stat"
-    },
-    {
       "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
       "colors": [
-        "#C4162A",
-        "#C4162A",
-        "#C4162A"
+        "#d44a3a",
+        "#73BF69",
+        "#73BF69"
       ],
       "datasource": null,
-      "decimals": null,
+      "decimals": 2,
+      "description": "Average validator balance across the network",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1509,12 +1419,12 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 1,
-        "w": 6,
-        "x": 0,
-        "y": 10
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 7
       },
-      "id": 61,
+      "id": 33,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1531,11 +1441,11 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "20%",
+      "pluginVersion": "6.7.3",
+      "postfix": "ETH",
+      "postfixFontSize": "50%",
       "prefix": "",
-      "prefixFontSize": "20%",
+      "prefixFontSize": "50%",
       "rangeMaps": [
         {
           "from": "null",
@@ -1545,27 +1455,27 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
         "ymin": null
       },
       "tableColumn": "",
       "targets": [
         {
-          "expr": "1",
+          "expr": "validators_total_balance{state=\"Active\",job=\"$beacon\"} / validator_count{state=\"Active\",job=\"$beacon\"} / 1000000000",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "eth",
           "refId": "A"
         }
       ],
-      "thresholds": "0,0",
+      "thresholds": "32",
       "timeFrom": null,
       "timeShift": null,
-      "title": "ALERTS",
+      "title": "Avg. Balance",
       "type": "singlestat",
-      "valueFontSize": "20%",
+      "valueFontSize": "80%",
       "valueMaps": [
         {
           "op": "=",
@@ -1574,6 +1484,94 @@
         }
       ],
       "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#73BF69",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "description": "The difference between the expected slot based on the genesis time and the current head slot. Ideally this is zero.",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 7
+      },
+      "id": 43,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.3",
+      "postfix": "slots",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "beacon_clock_time_slot-beacon_head_slot{job=\"$beacon\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "slots",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Slots Behind",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -1595,8 +1593,8 @@
       },
       "gridPos": {
         "h": 1,
-        "w": 6,
-        "x": 6,
+        "w": 12,
+        "x": 0,
         "y": 10
       },
       "id": 58,
@@ -1653,8 +1651,13 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
+          "text": "",
           "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
         }
       ],
       "valueName": "current"
@@ -1737,40 +1740,16 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
+          "text": "",
           "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
         }
       ],
       "valueName": "current"
-    },
-    {
-      "dashboardFilter": "",
-      "dashboardTags": [],
-      "datasource": null,
-      "folderId": null,
-      "gridPos": {
-        "h": 18,
-        "w": 6,
-        "x": 0,
-        "y": 11
-      },
-      "id": 63,
-      "limit": 10,
-      "nameFilter": "",
-      "onlyAlertsOnDashboard": false,
-      "show": "current",
-      "sortOrder": 3,
-      "stateFilter": [
-        "no_data",
-        "execution_error",
-        "alerting",
-        "pending",
-        "paused"
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Alerts",
-      "type": "alertlist"
     },
     {
       "aliasColors": {
@@ -1783,11 +1762,11 @@
       "decimals": 2,
       "description": "Memory usage on the server",
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 4,
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 6,
+        "x": 0,
         "y": 11
       },
       "hiddenSeries": false,
@@ -1804,7 +1783,7 @@
         "values": false
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "nullPointMode": "connected",
       "options": {
         "dataLinks": []
@@ -1813,53 +1792,42 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/Apps|Buffers|Cached|Free|Slab|SwapCached|PageTables|VmallocUsed/",
-          "fill": 5,
-          "stack": true
-        },
-        {
-          "alias": "Swap",
-          "fill": 5,
-          "stack": true
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
           "expr": "( node_memory_MemTotal_bytes{job=\"$host\"} - node_memory_MemFree_bytes{job=\"$host\"} - node_memory_Buffers_bytes{job=\"$host\"} - node_memory_Cached_bytes{job=\"$host\"} - node_memory_SwapCached_bytes{job=\"$host\"} - node_memory_Slab_bytes{job=\"$host\"} - node_memory_PageTables_bytes{job=\"$host\"} - node_memory_VmallocUsed_bytes{job=\"$host\"} ) or ( node_memory_MemTotal{job=\"$host\"} - node_memory_MemFree{job=\"$host\"} - node_memory_Buffers{job=\"$host\"} - node_memory_Cached{job=\"$host\"} - node_memory_SwapCached{job=\"$host\"} - node_memory_Slab{job=\"$host\"} - node_memory_PageTables{job=\"$host\"} - node_memory_VmallocUsed{job=\"$host\"} )",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Apps",
+          "legendFormat": "apps",
           "refId": "A"
         },
         {
           "expr": "node_memory_Buffers_bytes{job=\"$host\"} or node_memory_Buffers{job=\"$host\"}",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Buffers",
+          "legendFormat": "buffers",
           "refId": "B"
         },
         {
           "expr": "node_memory_Cached_bytes{job=\"$host\"} or node_memory_Cached{job=\"$host\"}",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Cached",
+          "legendFormat": "cached",
           "refId": "C"
         },
         {
           "expr": "node_memory_MemFree_bytes{job=\"$host\"} or node_memory_MemFree{job=\"$host\"}",
           "interval": "",
-          "legendFormat": "Free",
+          "legendFormat": "free",
           "refId": "D"
         },
         {
           "expr": "node_memory_Slab_bytes{job=\"$host\"} or node_memory_Slab{job=\"$host\"}",
           "interval": "",
-          "legendFormat": "Slab",
+          "legendFormat": "slab",
           "refId": "E"
         }
       ],
@@ -1905,13 +1873,112 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "Network transmission (tx) and reception (rx) rates",
+      "fill": 1,
+      "fillGradient": 4,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 6,
+        "y": 11
+      },
+      "hiddenSeries": false,
+      "id": 14,
+      "legend": {
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(node_network_transmit_bytes_total{job=\"$host\",device='enp1s0'}[5m])*8 or irate(node_network_transmit_bytes{job=\"$host\",device='enp1s0'}[5m])*8",
+          "interval": "",
+          "intervalFactor": 5,
+          "legendFormat": "tx",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(node_network_receive_bytes_total{job=\"$host\",device='enp1s0'}[5m])*8 or irate(node_network_receive_bytes{job=\"$host\",device='enp1s0'}[5m])*8",
+          "interval": "",
+          "intervalFactor": 5,
+          "legendFormat": "rx",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network Traffic",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "bps",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "cacheTimeout": null,
       "colorBackground": false,
       "colorPostfix": true,
       "colorPrefix": false,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
@@ -2031,7 +2098,7 @@
                   "value": null
                 },
                 {
-                  "color": "red",
+                  "color": "orange",
                   "value": 1
                 }
               ]
@@ -2041,11 +2108,11 @@
           "overrides": [],
           "values": false
         },
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "expr": "sum(rate(log_entries_total{job=\"$validator\", level=\"warning\"}[$__range]))*3600",
@@ -2069,11 +2136,11 @@
       "colors": [
         "#F2495C",
         "#F2CC0C",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
-      "description": "Total ETH return on the initial effective stake of all validators. Excess deposits will be reflected as earnings.",
+      "description": "Total ETH return on the initial effective stake of active local validators.",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -2119,9 +2186,9 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
         "ymin": null
       },
@@ -2129,7 +2196,7 @@
       "targets": [
         {
           "expr": "sum(validator_balance)-(count(validator_balance > 16 and validator_statuses == 3)*32)",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -2156,13 +2223,13 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
-      "description": "Total percentage return on the initial effective stake of all validators. Excess deposits will be reflected as earnings.",
+      "description": "Total percentage return on the initial effective stake of active local validators. Excess deposits will be reflected as earnings.",
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -2208,9 +2275,9 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
         "ymin": null
       },
@@ -2218,7 +2285,7 @@
       "targets": [
         {
           "expr": "(sum(validator_balance{job=\"$validator\"}) - (count(validator_balance > 16 and validator_statuses == 3)*32))/(count(validator_balance > 16 and validator_statuses == 3)*32)  ",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -2500,24 +2567,23 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "Network transmission (tx) and reception (rx) rates",
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 4,
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 6,
+        "x": 0,
         "y": 17
       },
       "hiddenSeries": false,
-      "id": 14,
+      "id": 81,
       "legend": {
         "avg": true,
-        "current": true,
+        "current": false,
         "hideEmpty": true,
         "hideZero": true,
         "max": true,
-        "min": false,
+        "min": true,
         "show": true,
         "total": false,
         "values": true
@@ -2538,26 +2604,35 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_transmit_bytes_total{job=\"$host\",device='enp1s0'}[5m])*8 or irate(node_network_transmit_bytes{job=\"$host\",device='enp1s0'}[5m])*8",
+          "expr": "probe_duration_seconds{job=\"beacon01_ping_google\"}",
           "interval": "",
-          "legendFormat": "Tx",
+          "intervalFactor": 10,
+          "legendFormat": "google",
           "refId": "A"
         },
         {
-          "expr": "irate(node_network_receive_bytes_total{job=\"$host\",device='enp1s0'}[5m])*8 or irate(node_network_receive_bytes{job=\"$host\",device='enp1s0'}[5m])*8",
+          "expr": "probe_duration_seconds{job=\"beacon01_ping_cloudflare\"}",
           "interval": "",
-          "legendFormat": "Rx",
+          "intervalFactor": 10,
+          "legendFormat": "cloudflare",
           "refId": "B"
+        },
+        {
+          "expr": "probe_duration_seconds{job=\"beacon01_ping_centurylink\"}",
+          "interval": "",
+          "intervalFactor": 10,
+          "legendFormat": "centurylink",
+          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Network Traffic",
+      "title": "Ping",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 1,
         "value_type": "individual"
       },
       "type": "graph",
@@ -2570,8 +2645,8 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": "bps",
+          "format": "s",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -2601,13 +2676,13 @@
       "datasource": null,
       "decimals": 2,
       "description": "Processor usage on the server",
-      "fill": 10,
+      "fill": 8,
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 23
+        "y": 17
       },
       "hiddenSeries": false,
       "id": 20,
@@ -2641,63 +2716,63 @@
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"system\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"system\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "system",
           "refId": "A"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"user\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"user\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "user",
           "refId": "B"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"nice\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"nice\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "nice",
           "refId": "C"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"iowait\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"iowait\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "iowait",
           "refId": "D"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"steal\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"steal\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "steal",
           "refId": "E"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"idle\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"idle\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "idle",
           "refId": "F"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"irq\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"irq\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "irq",
           "refId": "G"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"softirq\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"softirq\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "softirq",
           "refId": "H"
         },
         {
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"guest\",job=\"$host\"}[5m])) or sum(irate(node_cpu{mode=\"guest\",job=\"$host\"}[5m]))",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 10,
           "legendFormat": "guest",
           "refId": "I"
         }
@@ -2746,11 +2821,102 @@
     },
     {
       "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#C4162A",
+        "#C4162A",
+        "#C4162A"
+      ],
+      "datasource": null,
+      "decimals": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 12,
+        "x": 0,
+        "y": 23
+      },
+      "id": 61,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "20%",
+      "prefix": "",
+      "prefixFontSize": "20%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "1",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "0,0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ALERTS",
+      "type": "singlestat",
+      "valueFontSize": "20%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
       "colorBackground": false,
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
         "#299c46"
       ],
@@ -2802,17 +2968,17 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
           "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 30d != 0)",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -2839,9 +3005,9 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
@@ -2877,7 +3043,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.3",
       "postfix": "ETH",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -2891,17 +3057,17 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
           "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 7d != 0)",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -2930,7 +3096,7 @@
       "colors": [
         "#d44a3a",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
@@ -2980,17 +3146,17 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
           "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1d != 0)",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -3017,9 +3183,9 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
@@ -3069,18 +3235,19 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "full": true,
+        "lineColor": "#5794F2",
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
           "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1h != 0)",
-          "instant": true,
+          "instant": false,
           "interval": "",
+          "intervalFactor": 3,
           "legendFormat": "",
           "refId": "A"
         }
@@ -3101,12 +3268,40 @@
       "valueName": "current"
     },
     {
+      "dashboardFilter": "",
+      "dashboardTags": [],
+      "datasource": null,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 63,
+      "limit": 10,
+      "nameFilter": "",
+      "onlyAlertsOnDashboard": true,
+      "show": "current",
+      "sortOrder": 3,
+      "stateFilter": [
+        "no_data",
+        "execution_error",
+        "alerting",
+        "pending",
+        "paused"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alerts",
+      "type": "alertlist"
+    },
+    {
       "cacheTimeout": null,
       "colorBackground": false,
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
         "#299c46"
       ],
@@ -3158,17 +3353,17 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
           "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 30d != 0))/sum(validator_balance{job=\"$validator\"} offset 30d != 0) * (365/30)",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -3195,9 +3390,9 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
@@ -3247,17 +3442,17 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 7d != 0))/sum(validator_balance{job=\"$validator\"} offset 7d != 0) * 52",
-          "instant": true,
+          "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 7d != 0))/sum(validator_balance{job=\"$validator\"} offset 7d != 0) * (365/7)",
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -3284,9 +3479,9 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
@@ -3336,17 +3531,17 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
           "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1d != 0))/sum(validator_balance{job=\"$validator\"} offset 1d != 0) * 365",
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -3373,9 +3568,9 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
@@ -3425,18 +3620,19 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
       "tableColumn": "",
       "targets": [
         {
           "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1h != 0))/sum(validator_balance{job=\"$validator\"} offset 1h != 0) * (24*365)",
-          "instant": true,
+          "instant": false,
           "interval": "",
+          "intervalFactor": 3,
           "legendFormat": "",
           "refId": "A"
         }
@@ -3466,7 +3662,6 @@
       {
         "current": {
           "selected": false,
-          "tags": [],
           "text": "default",
           "value": "default"
         },
@@ -3492,6 +3687,7 @@
         "label": "Host",
         "multi": false,
         "name": "host",
+        "options": [],
         "query": "label_values(node_cpu_seconds_total,job)",
         "refresh": 1,
         "regex": "",
@@ -3573,5 +3769,5 @@
   "variables": {
     "list": []
   },
-  "version": 3
+  "version": 37
 }
