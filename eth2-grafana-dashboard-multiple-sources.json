@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 20,
-  "iteration": 1589317506900,
+  "iteration": 1591197478482,
   "links": [],
   "panels": [
     {
@@ -636,7 +636,7 @@
                 },
                 {
                   "color": "red",
-                  "value": 1
+                  "value": 0.001
                 }
               ]
             },
@@ -1249,12 +1249,12 @@
       "interval": "",
       "legend": {
         "avg": false,
-        "current": true,
-        "max": true,
+        "current": false,
+        "max": false,
         "min": false,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -1408,7 +1408,7 @@
         "#73BF69"
       ],
       "datasource": null,
-      "decimals": 2,
+      "decimals": 4,
       "description": "Average validator balance across the network",
       "format": "none",
       "gauge": {
@@ -2098,8 +2098,8 @@
                   "value": null
                 },
                 {
-                  "color": "orange",
-                  "value": 1
+                  "color": "red",
+                  "value": 0.001
                 }
               ]
             },
@@ -2115,11 +2115,17 @@
       "pluginVersion": "6.7.3",
       "targets": [
         {
-          "expr": "sum(rate(log_entries_total{job=\"$validator\", level=\"warning\"}[$__range]))*3600",
+          "expr": "sum(rate(log_entries_total{job=\"$validator\", level=\"error\"}[$__range]))*3600",
           "instant": false,
           "interval": "",
-          "legendFormat": "warnings",
+          "legendFormat": "errors",
           "refId": "B"
+        },
+        {
+          "expr": "sum(rate(log_entries_total{job=\"$validator\", level=\"warning\"}[$__range]))*3600",
+          "interval": "",
+          "legendFormat": "warnings",
+          "refId": "A"
         }
       ],
       "timeFrom": null,
@@ -2494,12 +2500,12 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
+          "decimals": 4,
           "mappingType": 1,
           "pattern": "Value #F",
           "thresholds": [
-            "3",
-            "3.2"
+            "24",
+            "32"
           ],
           "type": "number",
           "unit": "short"
@@ -2977,7 +2983,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 30d != 0)",
+          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) + (32 * count(validator_balance{job=\"$validator\"} offset 30d > 16))",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -3066,7 +3072,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 7d != 0)",
+          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) + (32 * count(validator_balance{job=\"$validator\"} offset 7d > 16))",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -3155,7 +3161,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1d != 0)",
+          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) + (32 * count(validator_balance{job=\"$validator\"} offset 1d > 16))",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -3244,7 +3250,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1h != 0)",
+          "expr": "sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) + (32 * count(validator_balance{job=\"$validator\"} offset 1h > 16))",
           "instant": false,
           "interval": "",
           "intervalFactor": 3,
@@ -3271,6 +3277,7 @@
       "dashboardFilter": "",
       "dashboardTags": [],
       "datasource": null,
+      "folderId": null,
       "gridPos": {
         "h": 5,
         "w": 12,
@@ -3303,7 +3310,7 @@
       "colors": [
         "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
@@ -3322,7 +3329,7 @@
         "x": 12,
         "y": 26
       },
-      "id": 68,
+      "id": 84,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -3362,11 +3369,11 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 30d != 0))/sum(validator_balance{job=\"$validator\"} offset 30d != 0) * (365/30)",
-          "instant": false,
+          "expr": "((sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) +\t(32 * count(validator_balance{job=\"$validator\"} offset 30d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"$validator\"} > 16)[30d:]))) * (365/30)",
+          "hide": false,
           "interval": "",
-          "legendFormat": "",
-          "refId": "A"
+          "legendFormat": "annualized monthly return",
+          "refId": "B"
         }
       ],
       "thresholds": "-0, 0.0001",
@@ -3411,7 +3418,7 @@
         "x": 15,
         "y": 26
       },
-      "id": 67,
+      "id": 83,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -3451,11 +3458,11 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 7d != 0))/sum(validator_balance{job=\"$validator\"} offset 7d != 0) * (365/7)",
-          "instant": false,
+          "expr": "((sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) +\t(32 * count(validator_balance{job=\"$validator\"} offset 7d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"$validator\"} > 16)[7d:]))) * (365/7)",
+          "hide": false,
           "interval": "",
-          "legendFormat": "",
-          "refId": "A"
+          "legendFormat": "annualized weekly return",
+          "refId": "B"
         }
       ],
       "thresholds": "-0, 0.0001",
@@ -3540,11 +3547,11 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1d != 0))/sum(validator_balance{job=\"$validator\"} offset 1d != 0) * 365",
-          "instant": false,
+          "expr": "((sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) +\t(32 * count(validator_balance{job=\"$validator\"} offset 1d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"$validator\"} > 16)[1d:]))) * 365",
+          "hide": false,
           "interval": "",
-          "legendFormat": "",
-          "refId": "A"
+          "legendFormat": "annualized daily return",
+          "refId": "B"
         }
       ],
       "thresholds": "-0, 0.0001",
@@ -3589,7 +3596,7 @@
         "x": 21,
         "y": 26
       },
-      "id": 78,
+      "id": 82,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -3629,12 +3636,11 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1h != 0))/sum(validator_balance{job=\"$validator\"} offset 1h != 0) * (24*365)",
-          "instant": false,
+          "expr": "((sum(validator_balance{job=\"$validator\"}) - sum(validator_balance{job=\"$validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"$validator\"} > 16)) +\t(32 * count(validator_balance{job=\"$validator\"} offset 1h > 16)))/(32 * avg_over_time(count(validator_balance{job=\"$validator\"} > 16)[1h:]))) * 365 * 24",
+          "hide": false,
           "interval": "",
-          "intervalFactor": 3,
-          "legendFormat": "",
-          "refId": "A"
+          "legendFormat": "annualized hourly return",
+          "refId": "B"
         }
       ],
       "thresholds": "-0, 0.0001",
@@ -3660,11 +3666,6 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "default",
-          "value": "default"
-        },
         "hide": 0,
         "includeAll": false,
         "label": "Prometheus Node",
@@ -3769,5 +3770,5 @@
   "variables": {
     "list": []
   },
-  "version": 37
+  "version": 46
 }
