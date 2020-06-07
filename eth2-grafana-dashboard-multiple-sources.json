@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 20,
-  "iteration": 1591554106912,
+  "iteration": 1591558877278,
   "links": [],
   "panels": [
     {
@@ -668,7 +668,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Log Messages",
+      "title": "Beacon Log Messages",
       "type": "stat"
     },
     {
@@ -2127,7 +2127,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Log Messages",
+      "title": "Validator Log Messages",
       "type": "stat"
     },
     {
@@ -2366,9 +2366,9 @@
           ],
           "decimals": 2,
           "link": false,
-          "linkTargetBlank": true,
-          "linkTooltip": "beaconcha.in",
-          "linkUrl": "http://beaconcha.in/validator/{__name__:raw}",
+          "linkTargetBlank": false,
+          "linkTooltip": "",
+          "linkUrl": "",
           "pattern": "pubkey",
           "thresholds": [],
           "type": "hidden",
@@ -2529,8 +2529,9 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "link": true,
-          "linkTooltip": "beaconcha.in",
-          "linkUrl": "http://beaconcha.in/validator/${__cell_1:raw}",
+          "linkTargetBlank": true,
+          "linkTooltip": "beacon.etherscan.io",
+          "linkUrl": "https://beacon.etherscan.io/validator/${__cell_1:raw}",
           "mappingType": 1,
           "pattern": "pubkey_short",
           "thresholds": [],
@@ -3803,5 +3804,5 @@
   "variables": {
     "list": []
   },
-  "version": 53
+  "version": 58
 }
