@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 20,
-  "iteration": 1591197478482,
+  "iteration": 1591554106912,
   "links": [],
   "panels": [
     {
@@ -672,92 +672,72 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": false,
-      "colorValue": true,
-      "colors": [
-        "#73BF69",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": null,
-      "description": "The percentage of all validator balances earning returns. Equal to effective balance of all validators divided by the total balance of all validators.",
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
+      "description": "Counts of active, slashed and exited validators.",
       "gridPos": {
         "h": 3,
         "w": 3,
         "x": 12,
         "y": 1
       },
-      "id": 75,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
+      "id": 71,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "decimals": 0,
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "title": "",
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
         },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.3",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto"
       },
-      "tableColumn": "",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
-          "expr": "validators_total_effective_balance{state=\"Active\"}/validators_total_balance{state=\"Active\"}",
-          "instant": false,
+          "expr": "validator_count{state=\"Active\"} ",
+          "instant": true,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "active",
+          "refId": "C"
+        },
+        {
+          "expr": "validator_count{state=\"Slashed\"} ",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "slashed",
+          "refId": "B"
+        },
+        {
+          "expr": "validator_count{state=\"Exited\"} ",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "exited",
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Stake Effectiveness",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
+      "title": "Validator Counts",
+      "type": "stat"
     },
     {
       "datasource": null,
@@ -768,7 +748,7 @@
         "x": 15,
         "y": 1
       },
-      "id": 25,
+      "id": 88,
       "options": {
         "colorMode": "value",
         "fieldOptions": {
@@ -818,24 +798,23 @@
     },
     {
       "datasource": null,
-      "description": "Total historical exited and slashed validators",
+      "description": "Estimated length of time until all pending and exiting validators have cleared the queues.",
       "gridPos": {
         "h": 3,
         "w": 3,
         "x": 18,
         "y": 1
       },
-      "id": 71,
+      "id": 87,
       "options": {
         "colorMode": "value",
         "fieldOptions": {
           "calcs": [
-            "last"
+            "lastNotNull"
           ],
           "defaults": {
-            "decimals": 0,
+            "decimals": 2,
             "mappings": [],
-            "min": 0,
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -845,36 +824,35 @@
                 }
               ]
             },
-            "title": "",
-            "unit": "none"
+            "unit": "m"
           },
           "overrides": [],
           "values": false
         },
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto"
       },
       "pluginVersion": "6.7.3",
       "targets": [
         {
-          "expr": "validator_count{state=\"Exited\"} ",
+          "expr": "((validator_count{state=\"Pending\"}/4)*6.4)",
           "instant": true,
           "interval": "",
-          "legendFormat": "exited",
-          "refId": "A"
+          "legendFormat": "pending",
+          "refId": "B"
         },
         {
-          "expr": "validator_count{state=\"Slashed\"} ",
+          "expr": "((validator_count{state=\"Exiting\"}/4)*6.4)",
           "instant": true,
           "interval": "",
-          "legendFormat": "slashed",
-          "refId": "B"
+          "legendFormat": "exiting",
+          "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Validator Statuses",
+      "title": "Queue Lengths",
       "type": "stat"
     },
     {
@@ -1145,6 +1123,7 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
+      "colorPostfix": true,
       "colorValue": true,
       "colors": [
         "#d44a3a",
@@ -1152,7 +1131,8 @@
         "#73BF69"
       ],
       "datasource": null,
-      "description": "Total active validators",
+      "decimals": 4,
+      "description": "Average validator balance across the network",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1167,7 +1147,7 @@
         "x": 12,
         "y": 4
       },
-      "id": 31,
+      "id": 33,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1185,7 +1165,7 @@
       "nullPointMode": "connected",
       "nullText": null,
       "pluginVersion": "6.7.3",
-      "postfix": "",
+      "postfix": "ETH",
       "postfixFontSize": "50%",
       "prefix": "",
       "prefixFontSize": "50%",
@@ -1207,17 +1187,16 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "validator_count{state=\"Active\"}",
+          "expr": "validators_total_balance{state=\"Active\"} / validator_count{state=\"Active\"} / 1000000000",
           "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "active",
+          "legendFormat": "eth",
           "refId": "A"
         }
       ],
-      "thresholds": "16384",
+      "thresholds": "32",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Validators",
+      "title": "Avg. Balance",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -1230,7 +1209,9 @@
       "valueName": "avg"
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "active validators": "rgba(239, 132, 60, 0.57)"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -1248,10 +1229,12 @@
       "id": 64,
       "interval": "",
       "legend": {
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": false
@@ -1271,6 +1254,14 @@
         {
           "alias": "exiting",
           "transform": "negative-Y"
+        },
+        {
+          "alias": "active validators",
+          "yaxis": 2
+        },
+        {
+          "alias": "slashing",
+          "transform": "negative-Y"
         }
       ],
       "spaceLength": 10,
@@ -1284,23 +1275,29 @@
           "refId": "B"
         },
         {
-          "expr": "-validator_count{state=\"Exiting\"}",
+          "expr": "validator_count{state=\"Exiting\"}",
           "interval": "",
           "legendFormat": "exiting",
           "refId": "A"
         },
         {
-          "expr": "-validator_count{state=\"Slashing\"}",
+          "expr": "validator_count{state=\"Slashing\"}",
           "interval": "",
           "legendFormat": "slashing",
           "refId": "C"
+        },
+        {
+          "expr": "validator_count{state=\"Active\"}",
+          "interval": "",
+          "legendFormat": "active validators",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Validator Queues",
+      "title": "Validators",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1331,7 +1328,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -1400,17 +1397,16 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorPostfix": true,
+      "colorPostfix": false,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
         "#73BF69",
-        "#73BF69"
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
       ],
       "datasource": null,
-      "decimals": 4,
-      "description": "Average validator balance across the network",
-      "format": "none",
+      "description": "The percentage of all validator balances earning returns. Equal to effective balance of all validators divided by the total balance of all validators.",
+      "format": "percentunit",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1424,7 +1420,7 @@
         "x": 12,
         "y": 7
       },
-      "id": 33,
+      "id": 75,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1442,7 +1438,7 @@
       "nullPointMode": "connected",
       "nullText": null,
       "pluginVersion": "6.7.3",
-      "postfix": "ETH",
+      "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
       "prefixFontSize": "50%",
@@ -1464,16 +1460,17 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "validators_total_balance{state=\"Active\"} / validator_count{state=\"Active\"} / 1000000000",
+          "expr": "validators_total_effective_balance{state=\"Active\"}/validators_total_balance{state=\"Active\"}",
+          "instant": false,
           "interval": "",
-          "legendFormat": "eth",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
-      "thresholds": "32",
+      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Avg. Balance",
+      "title": "Stake Effectiveness",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -2201,7 +2198,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(validator_balance)-(count(validator_balance > 16 and validator_statuses == 3)*32)",
+          "expr": "sum(validator_balance{})-(count(validator_balance{} > 16 and validator_statuses{} == 3)*32)",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -2290,7 +2287,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(validator_balance{}) - (count(validator_balance > 16 and validator_statuses == 3)*32))/(count(validator_balance > 16 and validator_statuses == 3)*32)  ",
+          "expr": "(sum(validator_balance{}) - (count(validator_balance{} > 16 and validator_statuses{} == 3)*32))/(count(validator_balance{} > 16 and validator_statuses{} == 3)*32)  ",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -2324,6 +2321,8 @@
         "y": 14
       },
       "id": 54,
+      "interval": "",
+      "links": [],
       "pageSize": null,
       "pluginVersion": "6.5.1",
       "showHeader": true,
@@ -2366,9 +2365,13 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "decimals": 2,
-          "pattern": "pkey",
+          "link": false,
+          "linkTargetBlank": true,
+          "linkTooltip": "beaconcha.in",
+          "linkUrl": "http://beaconcha.in/validator/{__name__:raw}",
+          "pattern": "pubkey",
           "thresholds": [],
-          "type": "string",
+          "type": "hidden",
           "unit": "short"
         },
         {
@@ -2501,6 +2504,10 @@
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 4,
+          "link": false,
+          "linkTargetBlank": false,
+          "linkTooltip": "",
+          "linkUrl": "",
           "mappingType": 1,
           "pattern": "Value #F",
           "thresholds": [
@@ -2509,11 +2516,31 @@
           ],
           "type": "number",
           "unit": "short"
+        },
+        {
+          "alias": "pubkey",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTooltip": "beaconcha.in",
+          "linkUrl": "http://beaconcha.in/validator/${__cell_1:raw}",
+          "mappingType": 1,
+          "pattern": "pubkey_short",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
         }
       ],
       "targets": [
         {
-          "expr": "label_replace(max by(pubkey) (validator_balance{}), \"pubkey\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
+          "expr": "label_replace(max by(pubkey) (validator_balance{}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\") ",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2521,7 +2548,7 @@
           "refId": "F"
         },
         {
-          "expr": "label_replace(max by(pubkey) (validator_successful_proposals{}), \"pubkey\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
+          "expr": "label_replace(max by(pubkey) (validator_successful_proposals{}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2529,7 +2556,7 @@
           "refId": "E"
         },
         {
-          "expr": "label_replace(max by(pubkey) (validator_successful_attestations{}), \"pubkey\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
+          "expr": "label_replace(max by(pubkey) (validator_successful_attestations{}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2537,7 +2564,7 @@
           "refId": "A"
         },
         {
-          "expr": "label_replace(max by(pubkey) (validator_successful_aggregations{}), \"pubkey\", \"$1\", \"pubkey\", \"(.{10}).*\") ",
+          "expr": "label_replace(max by(pubkey) (validator_successful_aggregations{}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\") ",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2545,7 +2572,7 @@
           "refId": "C"
         },
         {
-          "expr": "label_replace(max by(pubkey) (validator_failed_attestations{}), \"pubkey\", \"$1\", \"pubkey\", \"(.{10}).*\") ",
+          "expr": "label_replace(max by(pubkey) (validator_failed_attestations{}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\") ",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2553,12 +2580,18 @@
           "refId": "B"
         },
         {
-          "expr": "label_replace(max by(pubkey) (validator_failed_aggregations{}), \"pubkey\", \"$1\", \"pubkey\", \"(.{10}).*\") ",
+          "expr": "label_replace(max by(pubkey) (validator_failed_aggregations{}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\") ",
           "format": "table",
           "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "D"
+        },
+        {
+          "expr": "label_replace(max by(pubkey) (validator_balance{}), \"pubkey\", \"$1\", \"pubkey_short\", \"(.{10}).*\") ",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "G"
         }
       ],
       "timeFrom": null,
@@ -3687,5 +3720,5 @@
   "variables": {
     "list": []
   },
-  "version": 46
+  "version": 53
 }
