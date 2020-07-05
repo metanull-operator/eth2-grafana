@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-							 
+  "id": 4,
   "links": [],
   "panels": [
     {
@@ -453,39 +452,8 @@
           "calcs": [
             "lastNotNull"
           ],
-					   
-						  
-						   
-										 
-						   
-								 
-						
-				 
-								 
-							   
-				  
-				 
-									
-							   
-				  
-				 
-									
-							  
-				  
-				 
-								   
-							  
-				 
-			   
-			  
-								 
-			
-						  
           "values": false
         }
-							
-							  
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -552,40 +520,8 @@
           "calcs": [
             "lastNotNull"
           ],
-					   
-						  
-						   
-					 
-					 
-						   
-								 
-						
-				 
-								 
-							   
-				  
-				 
-									
-							   
-				  
-				 
-									 
-							   
-				  
-				 
-								   
-							   
-				 
-			   
-			  
-								 
-			
-						  
           "values": false
         }
-							
-							  
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -748,50 +684,20 @@
           "calcs": [
             "last"
           ],
-					   
-						 
-			   
-						
-						  
-							  
-						  
-							   
-			   
-			  
-										 
-						   
-								 
-						
-				 
-								   
-							   
-				  
-				 
-								 
-								
-				 
-			   
-			  
-						 
-			
-						  
           "values": false
         }
-							
-								
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "sum(rate(log_entries_total{level=\"error\"}[$__range]))*3600",
+          "expr": "sum(rate(log_entries_total{level=\"error\",job=\"beacon\"}[$__range]))*3600",
           "instant": false,
           "interval": "",
           "legendFormat": "errors",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(log_entries_total{level=\"warning\"}[$__range]))*3600",
+          "expr": "sum(rate(log_entries_total{level=\"warning\",job=\"beacon\"}[$__range]))*3600",
           "instant": false,
           "interval": "",
           "legendFormat": "warnings",
@@ -842,28 +748,8 @@
           "calcs": [
             "last"
           ],
-					   
-						  
-						   
-					 
-						   
-								 
-						
-				 
-								   
-							   
-				 
-			   
-			  
-						
-						  
-			
-						  
           "values": false
         }
-							
-								
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -929,24 +815,8 @@
           "calcs": [
             "lastNotNull"
           ],
-					   
-						   
-						   
-								 
-						
-				 
-								   
-							   
-				 
-			   
-			 
-			
-						  
           "values": false
         }
-							
-								
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -1007,26 +877,8 @@
           "calcs": [
             "lastNotNull"
           ],
-					   
-						  
-						   
-						   
-								 
-						
-				 
-								   
-							   
-				 
-			   
-			  
-					   
-			
-						  
           "values": false
         }
-							
-								
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -1088,26 +940,8 @@
           "calcs": [
             "lastNotNull"
           ],
-					   
-						  
-						   
-					 
-						   
-								 
-						
-				 
-												
-							   
-				 
-			   
-			 
-			
-						  
           "values": false
         }
-							
-								
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -1612,24 +1446,8 @@
           "calcs": [
             "last"
           ],
-					   
-						   
-						   
-								 
-						
-				 
-												
-							   
-				 
-			   
-			 
-			
-						  
           "values": false
         }
-							
-								
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -2410,50 +2228,20 @@
           "calcs": [
             "last"
           ],
-					   
-						 
-			   
-						
-						  
-							  
-						  
-							   
-			   
-			  
-										 
-						   
-								 
-						
-				 
-								   
-							   
-				  
-				 
-								 
-								
-				 
-			   
-			  
-						 
-			
-						  
           "values": false
         }
-							
-								
-							 
       },
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "sum(rate(log_entries_total{level=\"error\"}[$__range]))*3600",
+          "expr": "sum(rate(log_entries_total{level=\"error\",job=\"validator\"}[$__range]))*3600",
           "instant": false,
           "interval": "",
           "legendFormat": "errors",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(log_entries_total{level=\"warning\"}[$__range]))*3600",
+          "expr": "sum(rate(log_entries_total{level=\"warning\",job=\"validator\"}[$__range]))*3600",
           "interval": "",
           "legendFormat": "warnings",
           "refId": "A"
@@ -4130,7 +3918,6 @@
   },
   "timepicker": {
     "refresh_intervals": [
-		   
       "10s",
       "30s",
       "1m",
@@ -4145,8 +3932,5 @@
   "timezone": "",
   "title": "Ethereum 2.0",
   "uid": "",
-				
-			  
-	
-  "version": 4
+  "version": 2
 }
