@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 20,
-  "iteration": 1591558877278,
+  "id": 1,
+							 
   "links": [],
   "panels": [
     {
@@ -30,6 +30,12 @@
       ],
       "datasource": null,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -120,6 +126,12 @@
         "#37872D"
       ],
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -209,6 +221,12 @@
         "#8F3BB8"
       ],
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -298,6 +316,12 @@
         "#1F60C4"
       ],
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -381,6 +405,37 @@
       "cacheTimeout": null,
       "datasource": null,
       "description": "The percentage of ETH balances expected to attest that are actually attesting.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 0.66
+              },
+              {
+                "color": "yellow",
+                "value": 0.8
+              },
+              {
+                "color": "green",
+                "value": 0.9
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -391,45 +446,48 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "decimals": 2,
-            "mappings": [],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "orange",
-                  "value": 0.66
-                },
-                {
-                  "color": "yellow",
-                  "value": 0.8
-                },
-                {
-                  "color": "green",
-                  "value": 0.9
-                }
-              ]
-            },
-            "unit": "percentunit"
-          },
-          "overrides": [],
+					   
+						  
+						   
+										 
+						   
+								 
+						
+				 
+								 
+							   
+				  
+				 
+									
+							   
+				  
+				 
+									
+							  
+				  
+				 
+								   
+							  
+				 
+			   
+			  
+								 
+			
+						  
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        }
+							
+							  
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "(total_voted_target_balances{} / total_eligible_balances{} )",
@@ -446,6 +504,38 @@
     {
       "datasource": null,
       "description": "A metric expressing the distance between the current finalized epoch and the expected finalized epoch based on the genesis time. 100% means the expected and current finalized epochs are the same. The metric reaches 0% when the finalized epoch is 25 epochs behind the expected epoch.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 0.88
+              },
+              {
+                "color": "#EAB839",
+                "value": 0.92
+              },
+              {
+                "color": "green",
+                "value": 0.96
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -455,46 +545,49 @@
       "id": 73,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "decimals": 0,
-            "mappings": [],
-            "max": 1,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "orange",
-                  "value": 0.88
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 0.92
-                },
-                {
-                  "color": "green",
-                  "value": 0.96
-                }
-              ]
-            },
-            "unit": "percentunit"
-          },
-          "overrides": [],
+					   
+						  
+						   
+					 
+					 
+						   
+								 
+						
+				 
+								 
+							   
+				  
+				 
+									
+							   
+				  
+				 
+									 
+							   
+				  
+				 
+								   
+							   
+				 
+			   
+			  
+								 
+			
+						  
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        }
+							
+							  
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "clamp_min((1-(4*((floor(beacon_clock_time_slot{}/32) - beacon_finalized_epoch{} - 2)/100))),0)",
@@ -522,6 +615,12 @@
       "datasource": null,
       "decimals": 1,
       "description": "The length of time the beacon chain process has been running",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "h",
       "gauge": {
         "maxValue": 100,
@@ -573,10 +672,10 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "",
+      "tableColumn": "{instance=\"localhost:8080\", job=\"beacon\"}",
       "targets": [
         {
-          "expr": "(time()-process_start_time_seconds{})/3600",
+          "expr": "(time()-process_start_time_seconds{job=\"beacon\"})/3600",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -602,6 +701,36 @@
       "cacheTimeout": null,
       "datasource": null,
       "description": "Average number of log messages received per hour over the selected time range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0.001
+              }
+            ]
+          },
+          "unit": "/hr"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -612,44 +741,47 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 0.001
-                }
-              ]
-            },
-            "unit": "/hr"
-          },
-          "overrides": [],
+					   
+						 
+			   
+						
+						  
+							  
+						  
+							   
+			   
+			  
+										 
+						   
+								 
+						
+				 
+								   
+							   
+				  
+				 
+								 
+								
+				 
+			   
+			  
+						 
+			
+						  
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
+							
+								
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "sum(rate(log_entries_total{level=\"error\"}[$__range]))*3600",
@@ -674,6 +806,26 @@
     {
       "datasource": null,
       "description": "Counts of active, slashed and exited validators.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "displayName": "",
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -683,34 +835,37 @@
       "id": 71,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "decimals": 0,
-            "mappings": [],
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "title": "",
-            "unit": "none"
-          },
-          "overrides": [],
+					   
+						  
+						   
+					 
+						   
+								 
+						
+				 
+								   
+							   
+				 
+			   
+			  
+						
+						  
+			
+						  
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
+							
+								
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "validator_count{state=\"Active\"} ",
@@ -742,6 +897,22 @@
     {
       "datasource": null,
       "description": "Current number of pending and exiting validators",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -751,30 +922,33 @@
       "id": 88,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+					   
+						   
+						   
+								 
+						
+				 
+								   
+							   
+				 
+			   
+			 
+			
+						  
           "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
+							
+								
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "validator_count{state=\"Pending\"}",
@@ -799,6 +973,24 @@
     {
       "datasource": null,
       "description": "Estimated length of time until all pending and exiting validators have cleared the queues.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -808,32 +1000,35 @@
       "id": 87,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "decimals": 2,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "m"
-          },
-          "overrides": [],
+					   
+						  
+						   
+						   
+								 
+						
+				 
+								   
+							   
+				 
+			   
+			  
+					   
+			
+						  
           "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
+							
+								
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "((validator_count{state=\"Pending\"}/4)*6.4)",
@@ -858,6 +1053,24 @@
     {
       "datasource": null,
       "description": "Current, justified, and finalized epochs. In this order, these three values should be sequentially decreasing.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(135, 135, 135)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -868,32 +1081,35 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "decimals": 0,
-            "mappings": [],
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(135, 135, 135)",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+					   
+						  
+						   
+					 
+						   
+								 
+						
+				 
+												
+							   
+				 
+			   
+			 
+			
+						  
           "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
+							
+								
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "floor(beacon_clock_time_slot{} / 32)",
@@ -930,6 +1146,12 @@
       "dashes": false,
       "datasource": null,
       "description": "The percentage of ETH balances expected to attest that are actually attesting.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1029,6 +1251,12 @@
       "dashes": false,
       "datasource": null,
       "description": "The number of peers to which the beacon chain is connected",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1133,6 +1361,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Average validator balance across the network",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1184,7 +1418,7 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "",
+      "tableColumn": "eth",
       "targets": [
         {
           "expr": "validators_total_balance{state=\"Active\"} / validator_count{state=\"Active\"} / 1000000000",
@@ -1217,6 +1451,12 @@
       "dashes": false,
       "datasource": null,
       "description": "Number of pending and existing validators over time. Pending validators are shown as positive values, while exiting validators are shown as negative values.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1339,6 +1579,22 @@
     {
       "datasource": null,
       "description": "Current slot and head slot",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(135, 135, 135)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -1349,30 +1605,33 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(135, 135, 135)",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+					   
+						   
+						   
+								 
+						
+				 
+												
+							   
+				 
+			   
+			 
+			
+						  
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
+							
+								
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "beacon_slot{}",
@@ -1406,6 +1665,12 @@
       ],
       "datasource": null,
       "description": "The percentage of all validator balances earning returns. Equal to effective balance of all validators divided by the total balance of all validators.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -1457,7 +1722,7 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "",
+      "tableColumn": "{instance=\"localhost:8080\", job=\"beacon\", state=\"Active\"}",
       "targets": [
         {
           "expr": "validators_total_effective_balance{state=\"Active\"}/validators_total_balance{state=\"Active\"}",
@@ -1494,6 +1759,12 @@
       ],
       "datasource": null,
       "description": "The difference between the expected slot based on the genesis time and the current head slot. Ideally this is zero.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1545,7 +1816,7 @@
         "ymax": null,
         "ymin": 0
       },
-      "tableColumn": "",
+      "tableColumn": "slots",
       "targets": [
         {
           "expr": "beacon_clock_time_slot-beacon_head_slot{}",
@@ -1580,6 +1851,12 @@
         "#5794F2"
       ],
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1669,6 +1946,12 @@
         "#FA6400"
       ],
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1758,6 +2041,12 @@
       "datasource": null,
       "decimals": 2,
       "description": "Memory usage on the server",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1876,6 +2165,12 @@
       "dashes": false,
       "datasource": null,
       "description": "Network transmission (tx) and reception (rx) rates",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1913,14 +2208,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_transmit_bytes_total{device='enp1s0'}[5m])*8 or irate(node_network_transmit_bytes{device='enp1s0'}[5m])*8",
+          "expr": "irate(node_network_transmit_bytes_total{device='eno1'}[5m])*8 or irate(node_network_transmit_bytes{device='eno1'}[5m])*8",
           "interval": "",
           "intervalFactor": 5,
           "legendFormat": "tx",
           "refId": "A"
         },
         {
-          "expr": "irate(node_network_receive_bytes_total{device='enp1s0'}[5m])*8 or irate(node_network_receive_bytes{device='enp1s0'}[5m])*8",
+          "expr": "irate(node_network_receive_bytes_total{device='eno1'}[5m])*8 or irate(node_network_receive_bytes{device='eno1'}[5m])*8",
           "interval": "",
           "intervalFactor": 5,
           "legendFormat": "rx",
@@ -1982,6 +2277,12 @@
       "datasource": null,
       "decimals": 1,
       "description": "The length of time the validator process has been running",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "h",
       "gauge": {
         "maxValue": 100,
@@ -2036,7 +2337,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(time()-process_start_time_seconds{})/3600",
+          "expr": "(time()-process_start_time_seconds{job=\"validator\"})/3600",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -2062,6 +2363,36 @@
       "cacheTimeout": null,
       "datasource": null,
       "description": "Average number of log messages received per hour over the selected time range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0.001
+              }
+            ]
+          },
+          "unit": "/hr"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -2072,44 +2403,47 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 0.001
-                }
-              ]
-            },
-            "unit": "/hr"
-          },
-          "overrides": [],
+					   
+						 
+			   
+						
+						  
+							  
+						  
+							   
+			   
+			  
+										 
+						   
+								 
+						
+				 
+								   
+							   
+				  
+				 
+								 
+								
+				 
+			   
+			  
+						 
+			
+						  
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
+							
+								
+							 
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "sum(rate(log_entries_total{level=\"error\"}[$__range]))*3600",
@@ -2144,6 +2478,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Total ETH return on the initial effective stake of active local validators.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -2233,6 +2573,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Total percentage return on the initial effective stake of active local validators. Excess deposits will be reflected as earnings.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -2313,6 +2659,12 @@
       "columns": [],
       "datasource": null,
       "description": "validator stats by public key over the lifetime of the validator process ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 9,
@@ -2599,7 +2951,7 @@
       "timeShift": null,
       "title": "Validator Process Stats",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {},
@@ -2607,6 +2959,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -2644,21 +3002,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_duration_seconds{job=\"beacon01_ping_google\"}",
+          "expr": "probe_duration_seconds{job=\"ping_google\"}",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "google",
           "refId": "A"
         },
         {
-          "expr": "probe_duration_seconds{job=\"beacon01_ping_cloudflare\"}",
+          "expr": "probe_duration_seconds{job=\"ping_cloudflare\"}",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "cloudflare",
           "refId": "B"
         },
         {
-          "expr": "probe_duration_seconds{job=\"beacon01_ping_centurylink\"}",
+          "expr": "probe_duration_seconds{job=\"ping_centurylink\"}",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "centurylink",
@@ -2716,6 +3074,12 @@
       "datasource": null,
       "decimals": 2,
       "description": "Processor usage on the server",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 8,
       "fillGradient": 0,
       "gridPos": {
@@ -2870,6 +3234,12 @@
       ],
       "datasource": null,
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -2963,6 +3333,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Increase in all local validator balances over the last month",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -3052,6 +3428,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Increase in all local validator balances over the last week",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -3141,6 +3523,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Increase in all local validator balances over the last day",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -3230,6 +3618,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Increase in all local validator balances over the last hour",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -3311,6 +3705,12 @@
       "dashboardFilter": "",
       "dashboardTags": [],
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "folderId": null,
       "gridPos": {
         "h": 5,
@@ -3349,6 +3749,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Percentage increase in all local validator balances over the last month",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -3438,6 +3844,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Percentage increase in all local validator balances over the last week",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -3527,6 +3939,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Percentage increase in all local validator balances over the last day",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -3616,6 +4034,12 @@
       "datasource": null,
       "decimals": 4,
       "description": "Percentage increase in all local validator balances over the last hour",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -3694,16 +4118,19 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [],
+  "templating": {
+    "list": []
+  },
   "time": {
     "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
+		   
       "10s",
       "30s",
       "1m",
@@ -3718,8 +4145,8 @@
   "timezone": "",
   "title": "Ethereum 2.0",
   "uid": "",
-  "variables": {
-    "list": []
-  },
-  "version": 58
+				
+			  
+	
+  "version": 4
 }
