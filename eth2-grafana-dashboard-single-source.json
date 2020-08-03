@@ -1548,7 +1548,7 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "{instance=\"192.168.8.82:8080\", job=\"prysm_beacon01\", state=\"Active\"}",
+      "tableColumn": "{job=\"beacon\", state=\"Active\"}",
       "targets": [
         {
           "expr": "validators_total_effective_balance{job=\"beacon\",state=\"Active\"}/validators_total_balance{job=\"beacon\",state=\"Active\"}",
