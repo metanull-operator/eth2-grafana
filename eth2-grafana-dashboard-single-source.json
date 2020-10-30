@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "panels": [
     {
@@ -450,7 +449,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -459,7 +458,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "(total_voted_target_balances{job=\"beacon\"} / total_eligible_balances{job=\"beacon\"} )",
+          "expr": "(beacon_prev_epoch_target_gwei{job=\"beacon\"} / beacon_prev_epoch_active_gwei{job=\"beacon\"} )",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -610,7 +609,7 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "{instance=\"localhost:8080\", job=\"beacon\"}",
+      "tableColumn": "{instance=\"127.0.0.1:8080\", job=\"beacon\"}",
       "targets": [
         {
           "expr": "(time()-process_start_time_seconds{job=\"beacon\"})/3600",
@@ -1028,7 +1027,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "(total_voted_target_balances{job=\"beacon\"} / total_eligible_balances{job=\"beacon\"} )",
+          "expr": "(beacon_prev_epoch_target_gwei{job=\"beacon\"} / beacon_prev_epoch_active_gwei{job=\"beacon\"} )",
           "interval": "",
           "legendFormat": "participation rate",
           "refId": "A"
@@ -1548,7 +1547,7 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "{job=\"beacon\", state=\"Active\"}",
+      "tableColumn": "{instance=\"127.0.0.1:8080\", job=\"beacon\", state=\"Active\"}",
       "targets": [
         {
           "expr": "validators_total_effective_balance{job=\"beacon\",state=\"Active\"}/validators_total_balance{job=\"beacon\",state=\"Active\"}",
@@ -2183,7 +2182,7 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "{instance=\"localhost:8081\", job=\"validator\"}",
+      "tableColumn": "{instance=\"127.0.0.1:8081\", job=\"validator\"}",
       "targets": [
         {
           "expr": "(time()-process_start_time_seconds{job=\"validator\"})/3600",
@@ -4156,6 +4155,5 @@
     ]
   },
   "timezone": "",
-  "title": "Ethereum 2.0",
-  "version": 62
+  "title": "Ethereum 2.0"
 }
