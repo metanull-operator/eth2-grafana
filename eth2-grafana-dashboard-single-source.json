@@ -15,6 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -22,9 +23,9 @@
       "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#B877D9",
-        "#B877D9",
-        "#B877D9"
+        "#37872D",
+        "#37872D",
+        "#37872D"
       ],
       "datasource": null,
       "description": "",
@@ -44,8 +45,104 @@
       },
       "gridPos": {
         "h": 1,
-        "w": 6,
+        "w": 12,
         "x": 0,
+        "y": 0
+      },
+      "id": 95,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "20%",
+      "prefix": "",
+      "prefixFontSize": "20%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "1",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "0,0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Status",
+      "type": "singlestat",
+      "valueFontSize": "20%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#1F60C4",
+        "#1F60C4",
+        "#1F60C4"
+      ],
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 12,
+        "x": 12,
         "y": 0
       },
       "id": 56,
@@ -97,7 +194,7 @@
       "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Network Beacon Chain",
+      "title": "Network Status",
       "type": "singlestat",
       "valueFontSize": "20%",
       "valueMaps": [
@@ -115,226 +212,177 @@
       "valueName": "current"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#37872D",
-        "#37872D",
-        "#37872D"
-      ],
       "datasource": null,
+      "description": "Sum of all validator balances.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "decimals": 4,
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ETH"
         },
         "overrides": []
       },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
       "gridPos": {
-        "h": 1,
-        "w": 6,
-        "x": 6,
-        "y": 0
-      },
-      "id": 59,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "20%",
-      "prefix": "",
-      "prefixFontSize": "20%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "1",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Local Beacon Chain",
-      "type": "singlestat",
-      "valueFontSize": "20%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "",
-          "value": "1"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#8F3BB8",
-        "#8F3BB8",
-        "#8F3BB8"
-      ],
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 9,
-        "x": 12,
-        "y": 0
-      },
-      "id": 65,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "20%",
-      "prefix": "",
-      "prefixFontSize": "20%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "1",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Network Validators",
-      "type": "singlestat",
-      "valueFontSize": "20%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "",
-          "value": "1"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#1F60C4",
-        "#1F60C4",
-        "#1F60C4"
-      ],
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 1,
+        "h": 3,
         "w": 3,
-        "x": 21,
-        "y": 0
+        "x": 0,
+        "y": 1
       },
-      "id": 66,
+      "id": 94,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Validator Balance",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "description": "Total ETH return on the initial effective stake of active local validators.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 4,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#F2495C",
+                "value": null
+              },
+              {
+                "color": "#F2CC0C",
+                "value": 0
+              },
+              {
+                "color": "#73BF69",
+                "value": 0.0001
+              }
+            ]
+          },
+          "unit": "ETH"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 1
+      },
+      "id": 52,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"})-(count(validator_balance{job=\"validator\"} > 16 and validator_statuses{job=\"validator\"} == 3)*32)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Earnings",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Total percentage return on the initial effective stake of active local validators. Excess deposits will be reflected as earnings.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 1
+      },
+      "id": 70,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -351,10 +399,11 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "pluginVersion": "6.7.2",
       "postfix": "",
-      "postfixFontSize": "20%",
+      "postfixFontSize": "50%",
       "prefix": "",
-      "prefixFontSize": "20%",
+      "prefixFontSize": "50%",
       "rangeMaps": [
         {
           "from": "null",
@@ -364,40 +413,104 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
         "ymin": null
       },
       "tableColumn": "",
       "targets": [
         {
-          "expr": "1",
+          "expr": "(sum(validator_balance{job=\"validator\"}) - (count(validator_balance{job=\"validator\"} > 16 and validator_statuses{job=\"validator\"} == 3)*32))/(count(validator_balance{job=\"validator\"} > 16 and validator_statuses{job=\"validator\"} == 3)*32)  ",
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "thresholds": "",
+      "thresholds": "-0, 0.0001",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Slots/Epochs",
+      "title": "Total Return",
       "type": "singlestat",
-      "valueFontSize": "20%",
+      "valueFontSize": "80%",
       "valueMaps": [
         {
           "op": "=",
-          "text": "",
+          "text": "N/A",
           "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "",
-          "value": "1"
         }
       ],
       "valueName": "current"
+    },
+    {
+      "datasource": null,
+      "description": "Number of beacon nodes to which this node is connected.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 10
+              },
+              {
+                "color": "yellow",
+                "value": 20
+              },
+              {
+                "color": "green",
+                "value": 30
+              }
+            ]
+          },
+          "unit": "peers"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 1
+      },
+      "id": 98,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "p2p_peer_count{state=\"Connected\",job=\"beacon\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Peer Count",
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
@@ -437,7 +550,7 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 0,
+        "x": 12,
         "y": 1
       },
       "id": 23,
@@ -507,7 +620,7 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 3,
+        "x": 15,
         "y": 1
       },
       "id": 73,
@@ -539,447 +652,6 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorPrefix": false,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "decimals": 1,
-      "description": "The length of time the beacon chain process has been running",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "h",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 6,
-        "y": 1
-      },
-      "id": 45,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "(s)",
-      "postfixFontSize": "80%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "{instance=\"127.0.0.1:8080\", job=\"beacon\"}",
-      "targets": [
-        {
-          "expr": "(time()-process_start_time_seconds{job=\"beacon\"})/3600",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "48,96",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Beacon Uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": null,
-      "description": "Average number of log messages received per hour over the selected time range",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 0.001
-              }
-            ]
-          },
-          "unit": "/hr"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 9,
-        "y": 1
-      },
-      "id": 79,
-      "links": [],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "expr": "sum(rate(log_entries_total{job=\"beacon\", level=\"error\"}[$__range]))*3600",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "errors",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(rate(log_entries_total{job=\"beacon\", level=\"warning\"}[$__range]))*3600",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "warnings",
-          "refId": "B"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Beacon Log Messages",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "Counts of active, slashed and exited validators.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 0,
-          "displayName": "",
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 1
-      },
-      "id": 71,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "expr": "validator_count{state=\"Active\",job=\"beacon\"} ",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "active",
-          "refId": "C"
-        },
-        {
-          "expr": "validator_count{state=\"Slashed\",job=\"beacon\"} ",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "slashed",
-          "refId": "B"
-        },
-        {
-          "expr": "validator_count{state=\"Exited\",job=\"beacon\"} ",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "exited",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Validator Counts",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "Current number of pending and exiting validators",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 15,
-        "y": 1
-      },
-      "id": 88,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "expr": "validator_count{state=\"Pending\",job=\"beacon\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "pending",
-          "refId": "B"
-        },
-        {
-          "expr": "validator_count{state=\"Exiting\",job=\"beacon\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "exiting",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Validator Queues",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "Estimated length of time until all pending and exiting validators have cleared the queues.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "m"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 18,
-        "y": 1
-      },
-      "id": 87,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "expr": "((validator_count{state=\"Pending\",job=\"beacon\"}/4)*6.4)",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "pending",
-          "refId": "B"
-        },
-        {
-          "expr": "((validator_count{state=\"Exiting\",job=\"beacon\"}/4)*6.4)",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "exiting",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Queue Lengths",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "Current, justified, and finalized epochs. In this order, these three values should be sequentially decreasing.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 0,
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(135, 135, 135)",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 1
-      },
-      "id": 27,
-      "links": [],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "expr": "floor(beacon_clock_time_slot{job=\"beacon\"} / 32)",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "current",
-          "refId": "A"
-        },
-        {
-          "expr": "beacon_current_justified_epoch{job=\"beacon\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "justified",
-          "refId": "C"
-        },
-        {
-          "expr": "beacon_finalized_epoch {job=\"beacon\"} ",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "finalized",
-          "refId": "D"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Epochs",
-      "type": "stat"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -997,8 +669,8 @@
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 0,
-        "y": 4
+        "x": 18,
+        "y": 1
       },
       "hiddenSeries": false,
       "id": 2,
@@ -1085,122 +757,15 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "description": "The number of peers to which the beacon chain is connected",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 4,
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 6,
-        "y": 4
-      },
-      "hiddenSeries": false,
-      "id": 5,
-      "legend": {
-        "avg": true,
-        "current": true,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "p2p_peer_count{state=\"Connected\",job=\"beacon\"}",
-          "interval": "",
-          "legendFormat": "peers",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": false,
-          "line": true,
-          "op": "lt",
-          "value": 8,
-          "yaxis": "left"
-        }
-      ],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Peers",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "Peers",
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
+      "colorBackground": true,
+      "colorValue": false,
       "colors": [
-        "#d44a3a",
-        "#73BF69",
-        "#73BF69"
+        "#FA6400",
+        "#FA6400",
+        "#FA6400"
       ],
       "datasource": null,
-      "decimals": 4,
-      "description": "Average validator balance across the network",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1216,12 +781,435 @@
         "thresholdMarkers": true
       },
       "gridPos": {
+        "h": 1,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id": 96,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "20%",
+      "prefix": "",
+      "prefixFontSize": "20%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "1",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "0,0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Local Validators",
+      "type": "singlestat",
+      "valueFontSize": "20%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "datasource": null,
+      "description": "Current, justified, and finalized epochs. In this order, these three values should be sequentially decreasing.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(135, 135, 135)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
         "h": 3,
         "w": 3,
         "x": 12,
         "y": 4
       },
-      "id": 33,
+      "id": 27,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "floor(beacon_clock_time_slot{job=\"beacon\"} / 32)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "current",
+          "refId": "A"
+        },
+        {
+          "expr": "beacon_current_justified_epoch{job=\"beacon\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "justified",
+          "refId": "C"
+        },
+        {
+          "expr": "beacon_finalized_epoch {job=\"beacon\"} ",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "finalized",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Epochs",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "Current slot and head slot",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(135, 135, 135)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 15,
+        "y": 4
+      },
+      "id": 29,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "beacon_slot{job=\"beacon\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "current slot",
+          "refId": "A"
+        },
+        {
+          "expr": "beacon_head_slot{job=\"beacon\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "head slot",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Slots",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Increase in all local validator balances over the last hour",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "ETH",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 5
+      },
+      "id": 77,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "#5794F2",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1h > 16))",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 3,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Hourly Earnings",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Increase in all local validator balances over the last day",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "ETH",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 5
+      },
+      "id": 48,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1d > 16))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Daily Earnings",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Increase in all local validator balances over the last week",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "ETH",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 5
+      },
+      "id": 49,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1239,7 +1227,7 @@
       "nullPointMode": "connected",
       "nullText": null,
       "pluginVersion": "6.7.3",
-      "postfix": "ETH",
+      "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
       "prefixFontSize": "50%",
@@ -1256,21 +1244,22 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": true,
         "ymax": null,
-        "ymin": null
+        "ymin": 0
       },
-      "tableColumn": "eth",
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "validators_total_balance{state=\"Active\",job=\"beacon\"} / validator_count{state=\"Active\",job=\"beacon\"} / 1000000000",
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 7d > 16))",
+          "instant": false,
           "interval": "",
-          "legendFormat": "eth",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
-      "thresholds": "32",
+      "thresholds": "-0, 0.0001",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Avg. Balance",
+      "title": "Weekly Earnings",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -1280,7 +1269,649 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#299c46"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Increase in all local validator balances over the last month",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "ETH",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 5
+      },
+      "id": 50,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 30d > 16))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Monthly Earnings",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#F2495C",
+        "#F2495C",
+        "#F2495C"
+      ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      },
+      "id": 65,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "20%",
+      "prefix": "",
+      "prefixFontSize": "20%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "1",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Network Validators",
+      "type": "singlestat",
+      "valueFontSize": "20%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last hour",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 8
+      },
+      "id": 82,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "annualized hourly return",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1h > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1h:]))) * 365 * 24",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized hourly return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Hourly Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last day",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 8
+      },
+      "id": 69,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "annualized daily return",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1d:]))) * 365",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized daily return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Daily Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last week",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 8
+      },
+      "id": 83,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "annualized weekly return",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 7d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[7d:]))) * (365/7)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized weekly return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Weekly Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last month",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 8
+      },
+      "id": 84,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 30d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[30d:]))) * (365/30)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized monthly return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Monthly Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "datasource": null,
+      "description": "Counts of active, slashed and exited validators.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "displayName": "",
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 8
+      },
+      "id": 71,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "validator_count{state=\"Active\",job=\"beacon\"} ",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "active",
+          "refId": "C"
+        },
+        {
+          "expr": "validator_count{state=\"Slashed\",job=\"beacon\"} ",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "slashed",
+          "refId": "B"
+        },
+        {
+          "expr": "validator_count{state=\"Exited\",job=\"beacon\"} ",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "exited",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Validator Counts",
+      "type": "stat"
     },
     {
       "aliasColors": {
@@ -1303,7 +1934,7 @@
         "h": 6,
         "w": 6,
         "x": 15,
-        "y": 4
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 64,
@@ -1418,7 +2049,7 @@
     },
     {
       "datasource": null,
-      "description": "Current slot and head slot",
+      "description": "Current number of pending and exiting validators",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1427,7 +2058,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "rgb(135, 135, 135)",
+                "color": "green",
                 "value": null
               }
             ]
@@ -1439,18 +2070,17 @@
         "h": 3,
         "w": 3,
         "x": 21,
-        "y": 4
+        "y": 8
       },
-      "id": 29,
-      "links": [],
+      "id": 88,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "last"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
@@ -1459,1020 +2089,24 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_slot{job=\"beacon\"}",
+          "expr": "validator_count{state=\"Pending\",job=\"beacon\"}",
           "instant": true,
           "interval": "",
-          "legendFormat": "current slot",
-          "refId": "A"
+          "legendFormat": "pending",
+          "refId": "B"
         },
         {
-          "expr": "beacon_head_slot{job=\"beacon\"}",
+          "expr": "validator_count{state=\"Exiting\",job=\"beacon\"}",
           "instant": true,
           "interval": "",
-          "legendFormat": "head slot",
-          "refId": "B"
+          "legendFormat": "exiting",
+          "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Slots",
+      "title": "Validator Queues",
       "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": false,
-      "colorValue": true,
-      "colors": [
-        "#73BF69",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": null,
-      "description": "The percentage of all validator balances earning returns. Equal to effective balance of all validators divided by the total balance of all validators.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 7
-      },
-      "id": 75,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.3",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "{instance=\"127.0.0.1:8080\", job=\"beacon\", state=\"Active\"}",
-      "targets": [
-        {
-          "expr": "validators_total_effective_balance{job=\"beacon\",state=\"Active\"}/validators_total_balance{job=\"beacon\",state=\"Active\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Stake Effectiveness",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#73BF69",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": null,
-      "description": "The difference between the expected slot based on the genesis time and the current head slot. Ideally this is zero.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 7
-      },
-      "id": 43,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.3",
-      "postfix": "slots",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "slots",
-      "targets": [
-        {
-          "expr": "beacon_clock_time_slot-beacon_head_slot{job=\"beacon\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "slots",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Slots Behind",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#5794F2",
-        "#5794F2",
-        "#5794F2"
-      ],
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 12,
-        "x": 0,
-        "y": 10
-      },
-      "id": 58,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "20%",
-      "prefix": "",
-      "prefixFontSize": "20%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "1",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "0,0",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Server",
-      "type": "singlestat",
-      "valueFontSize": "20%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "",
-          "value": "1"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#FA6400",
-        "#FA6400",
-        "#FA6400"
-      ],
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 12,
-        "x": 12,
-        "y": 10
-      },
-      "id": 57,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "20%",
-      "prefix": "",
-      "prefixFontSize": "20%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "1",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "0,0",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Local Validators",
-      "type": "singlestat",
-      "valueFontSize": "20%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "",
-          "value": "1"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "aliasColors": {
-        "Free": "rgb(51, 51, 51)"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "decimals": 2,
-      "description": "Memory usage on the server",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 4,
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 0,
-        "y": 11
-      },
-      "hiddenSeries": false,
-      "id": 17,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "beacon memory",
-          "fill": 0,
-          "fillGradient": 0,
-          "stack": false
-        },
-        {
-          "alias": "validator memory",
-          "fill": 0,
-          "fillGradient": 0,
-          "stack": false
-        }
-      ],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "( node_memory_MemTotal_bytes{job=\"node_exporter\"} - node_memory_MemFree_bytes{job=\"node_exporter\"} - node_memory_Buffers_bytes{job=\"node_exporter\"} - node_memory_Cached_bytes{job=\"node_exporter\"} - node_memory_SwapCached_bytes{job=\"node_exporter\"} - node_memory_Slab_bytes{job=\"node_exporter\"} - node_memory_PageTables_bytes{job=\"node_exporter\"} - node_memory_VmallocUsed_bytes{job=\"node_exporter\"} ) or ( node_memory_MemTotal{job=\"node_exporter\"} - node_memory_MemFree{job=\"node_exporter\"} - node_memory_Buffers{job=\"node_exporter\"} - node_memory_Cached{job=\"node_exporter\"} - node_memory_SwapCached{job=\"node_exporter\"} - node_memory_Slab{job=\"node_exporter\"} - node_memory_PageTables{job=\"node_exporter\"} - node_memory_VmallocUsed{job=\"node_exporter\"} )",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "apps",
-          "refId": "A"
-        },
-        {
-          "expr": "node_memory_Buffers_bytes{job=\"node_exporter\"} or node_memory_Buffers{job=\"node_exporter\"}",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "buffers",
-          "refId": "B"
-        },
-        {
-          "expr": "node_memory_Cached_bytes{job=\"node_exporter\"} or node_memory_Cached{job=\"node_exporter\"}",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "cached",
-          "refId": "C"
-        },
-        {
-          "expr": "node_memory_MemFree_bytes{job=\"node_exporter\"} or node_memory_MemFree{job=\"node_exporter\"}",
-          "interval": "",
-          "legendFormat": "free",
-          "refId": "D"
-        },
-        {
-          "expr": "node_memory_Slab_bytes{job=\"node_exporter\"} or node_memory_Slab{job=\"node_exporter\"}",
-          "interval": "",
-          "legendFormat": "slab",
-          "refId": "E"
-        },
-        {
-          "expr": "process_resident_memory_bytes{job=\"beacon\"}",
-          "interval": "",
-          "legendFormat": "beacon memory",
-          "refId": "F"
-        },
-        {
-          "expr": "process_resident_memory_bytes{job=\"validator\"}",
-          "interval": "",
-          "legendFormat": "validator memory",
-          "refId": "G"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Memory Usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "decbytes",
-          "label": "GB",
-          "logBase": 1,
-          "max": "16000000000",
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 6,
-        "y": 11
-      },
-      "hiddenSeries": false,
-      "id": 90,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "node_hwmon_temp_celsius{chip=\"platform_coretemp_0\",job=\"node_exporter\",sensor=\"temp1\"}",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "cpu temp",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "yaxis": "left"
-        }
-      ],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "CPU Temp",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorPrefix": false,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "decimals": 1,
-      "description": "The length of time the validator process has been running",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "h",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 11
-      },
-      "id": 74,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "(s)",
-      "postfixFontSize": "80%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "{instance=\"127.0.0.1:8081\", job=\"validator\"}",
-      "targets": [
-        {
-          "expr": "(time()-process_start_time_seconds{job=\"validator\"})/3600",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "48,96",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": null,
-      "description": "Average number of log messages received per hour over the selected time range",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 0.001
-              }
-            ]
-          },
-          "unit": "/hr"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 15,
-        "y": 11
-      },
-      "id": 76,
-      "links": [],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "expr": "sum(rate(log_entries_total{job=\"validator\", level=\"error\"}[$__range]))*3600",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "errors",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(rate(log_entries_total{job=\"validator\", level=\"warning\"}[$__range]))*3600",
-          "interval": "",
-          "legendFormat": "warnings",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Validator Log Messages",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorPrefix": false,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#F2CC0C",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Total ETH return on the initial effective stake of active local validators.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 18,
-        "y": 11
-      },
-      "id": 52,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "ETH",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"})-(count(validator_balance{job=\"validator\"} > 16 and validator_statuses{job=\"validator\"} == 3)*32)",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Total Earnings  (ETH)",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Total percentage return on the initial effective stake of active local validators. Excess deposits will be reflected as earnings.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 11
-      },
-      "id": 70,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "(sum(validator_balance{job=\"validator\"}) - (count(validator_balance{job=\"validator\"} > 16 and validator_statuses{job=\"validator\"} == 3)*32))/(count(validator_balance{job=\"validator\"} > 16 and validator_statuses{job=\"validator\"} == 3)*32)  ",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Total Return",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
     },
     {
       "columns": [],
@@ -2486,10 +2120,10 @@
       },
       "fontSize": "100%",
       "gridPos": {
-        "h": 9,
+        "h": 10,
         "w": 12,
-        "x": 12,
-        "y": 14
+        "x": 0,
+        "y": 11
       },
       "id": 54,
       "interval": "",
@@ -2773,12 +2407,264 @@
       "type": "table-old"
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#73BF69",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Average validator balance across the network",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 11
+      },
+      "id": 33,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.3",
+      "postfix": "ETH",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "eth",
+      "targets": [
+        {
+          "expr": "validators_total_balance{state=\"Active\",job=\"beacon\"} / validator_count{state=\"Active\",job=\"beacon\"} / 1000000000",
+          "interval": "",
+          "legendFormat": "eth",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "32",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Avg. Balance",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "datasource": null,
+      "description": "Estimated length of time until all pending and exiting validators have cleared the queues.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 11
+      },
+      "id": 87,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "((validator_count{state=\"Pending\",job=\"beacon\"}/4)*6.4)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "pending",
+          "refId": "B"
+        },
+        {
+          "expr": "((validator_count{state=\"Exiting\",job=\"beacon\"}/4)*6.4)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "exiting",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Queue Lengths",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#8F3BB8",
+        "#8F3BB8",
+        "#8F3BB8"
+      ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "id": 57,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "20%",
+      "prefix": "",
+      "prefixFontSize": "20%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "1",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "0,0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Client Status",
+      "type": "singlestat",
+      "valueFontSize": "20%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "",
+      "description": "The number of peers to which the beacon chain is connected",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2786,23 +2672,23 @@
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 4,
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 0,
-        "y": 17
+        "x": 12,
+        "y": 15
       },
       "hiddenSeries": false,
-      "id": 92,
+      "id": 5,
       "legend": {
-        "avg": false,
-        "current": false,
+        "avg": true,
+        "current": true,
         "max": false,
         "min": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -2820,17 +2706,26 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(node_filesystem_size_bytes{job=\"node_exporter\"})-sum(node_filesystem_avail_bytes{job=\"node_exporter\"}))/sum(node_filesystem_size_bytes{job=\"node_exporter\"})",
+          "expr": "p2p_peer_count{state=\"Connected\",job=\"beacon\"}",
           "interval": "",
-          "legendFormat": "disk usage",
+          "legendFormat": "peers",
           "refId": "A"
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "lt",
+          "value": 10,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Disk Usage",
+      "title": "Peers",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2846,16 +2741,575 @@
       },
       "yaxes": [
         {
-          "decimals": 1,
-          "format": "percentunit",
-          "label": "",
+          "format": "short",
+          "label": "Peers",
           "logBase": 1,
-          "max": "1",
+          "max": null,
           "min": "0",
           "show": true
         },
         {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorPrefix": false,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "The length of time the beacon chain process has been running",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "h",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 18,
+        "y": 15
+      },
+      "id": 45,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "(s)",
+      "postfixFontSize": "80%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "{instance=\"127.0.0.1:8080\", job=\"beacon\"}",
+      "targets": [
+        {
+          "expr": "(time()-process_start_time_seconds{job=\"beacon\"})/3600",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "48,96",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Beacon Uptime",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "description": "Average number of log messages received per hour over the selected time range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0.001
+              }
+            ]
+          },
+          "unit": "/hr"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 15
+      },
+      "id": 79,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "sum(rate(log_entries_total{job=\"beacon\", level=\"error\"}[$__range]))*3600",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "errors",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(log_entries_total{job=\"beacon\", level=\"warning\"}[$__range]))*3600",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "warnings",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Beacon Logs",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorPrefix": false,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "The length of time the validator process has been running",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "h",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 18,
+        "y": 18
+      },
+      "id": 74,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "(s)",
+      "postfixFontSize": "80%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "{instance=\"127.0.0.1:8081\", job=\"validator\"}",
+      "targets": [
+        {
+          "expr": "(time()-process_start_time_seconds{job=\"validator\"})/3600",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "48,96",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Validator Uptime",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "description": "Average number of log messages received per hour over the selected time range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "noValue": "0",
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0.001
+              }
+            ]
+          },
+          "unit": "/hr"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 18
+      },
+      "id": 76,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "sum(rate(log_entries_total{job=\"validator\", level=\"error\"}[$__range]))*3600",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "errors",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(rate(log_entries_total{job=\"validator\", level=\"warning\"}[$__range]))*3600",
+          "interval": "",
+          "legendFormat": "warnings",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Validator Logs",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "rgb(105, 70, 0)",
+        "rgb(105, 70, 0)",
+        "rgb(105, 70, 0)"
+      ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 58,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "20%",
+      "prefix": "",
+      "prefixFontSize": "20%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "1",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "0,0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Server",
+      "type": "singlestat",
+      "valueFontSize": "20%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": "1"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "Free": "rgb(51, 51, 51)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 2,
+      "description": "Beacon chain and validator memory usage on the server.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 22
+      },
+      "hiddenSeries": false,
+      "id": 99,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "beacon memory",
+          "fill": 0,
+          "fillGradient": 0,
+          "stack": false
+        },
+        {
+          "alias": "validator memory",
+          "fill": 0,
+          "fillGradient": 0,
+          "stack": false
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "process_resident_memory_bytes{job=\"beacon\"}",
+          "interval": "",
+          "legendFormat": "beacon memory",
+          "refId": "F"
+        },
+        {
+          "expr": "process_resident_memory_bytes{job=\"validator\"}",
+          "interval": "",
+          "legendFormat": "validator memory",
+          "refId": "G"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Client Memory Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
           "format": "decbytes",
+          "label": "GB",
+          "logBase": 1,
+          "max": "16000000000",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2890,7 +3344,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 17
+        "y": 22
       },
       "hiddenSeries": false,
       "id": 20,
@@ -3045,8 +3499,8 @@
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 0,
-        "y": 23
+        "x": 12,
+        "y": 22
       },
       "hiddenSeries": false,
       "id": 14,
@@ -3138,6 +3592,106 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 22
+      },
+      "hiddenSeries": false,
+      "id": 92,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "(sum(node_filesystem_size_bytes{job=\"node_exporter\"})-sum(node_filesystem_avail_bytes{job=\"node_exporter\"}))/sum(node_filesystem_size_bytes{job=\"node_exporter\"})",
+          "interval": "",
+          "legendFormat": "disk usage",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "percentunit",
+          "label": "",
+          "logBase": 1,
+          "max": "1",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Free": "rgb(51, 51, 51)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 2,
+      "description": "Memory usage on the server",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -3149,8 +3703,247 @@
       "gridPos": {
         "h": 6,
         "w": 6,
+        "x": 0,
+        "y": 28
+      },
+      "hiddenSeries": false,
+      "id": 17,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "beacon memory",
+          "fill": 0,
+          "fillGradient": 0,
+          "stack": false
+        },
+        {
+          "alias": "validator memory",
+          "fill": 0,
+          "fillGradient": 0,
+          "stack": false
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "( node_memory_MemTotal_bytes{job=\"node_exporter\"} - node_memory_MemFree_bytes{job=\"node_exporter\"} - node_memory_Buffers_bytes{job=\"node_exporter\"} - node_memory_Cached_bytes{job=\"node_exporter\"} - node_memory_SwapCached_bytes{job=\"node_exporter\"} - node_memory_Slab_bytes{job=\"node_exporter\"} - node_memory_PageTables_bytes{job=\"node_exporter\"} - node_memory_VmallocUsed_bytes{job=\"node_exporter\"} ) or ( node_memory_MemTotal{job=\"node_exporter\"} - node_memory_MemFree{job=\"node_exporter\"} - node_memory_Buffers{job=\"node_exporter\"} - node_memory_Cached{job=\"node_exporter\"} - node_memory_SwapCached{job=\"node_exporter\"} - node_memory_Slab{job=\"node_exporter\"} - node_memory_PageTables{job=\"node_exporter\"} - node_memory_VmallocUsed{job=\"node_exporter\"} )",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "apps",
+          "refId": "A"
+        },
+        {
+          "expr": "node_memory_Buffers_bytes{job=\"node_exporter\"} or node_memory_Buffers{job=\"node_exporter\"}",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "buffers",
+          "refId": "B"
+        },
+        {
+          "expr": "node_memory_Cached_bytes{job=\"node_exporter\"} or node_memory_Cached{job=\"node_exporter\"}",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "cached",
+          "refId": "C"
+        },
+        {
+          "expr": "node_memory_MemFree_bytes{job=\"node_exporter\"} or node_memory_MemFree{job=\"node_exporter\"}",
+          "interval": "",
+          "legendFormat": "free",
+          "refId": "D"
+        },
+        {
+          "expr": "node_memory_Slab_bytes{job=\"node_exporter\"} or node_memory_Slab{job=\"node_exporter\"}",
+          "interval": "",
+          "legendFormat": "slab",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Server Memory Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": "GB",
+          "logBase": 1,
+          "max": "16000000000",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
         "x": 6,
-        "y": 23
+        "y": 28
+      },
+      "hiddenSeries": false,
+      "id": 90,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "node_hwmon_temp_celsius{chip=\"platform_coretemp_0\",job=\"node_exporter\",sensor=\"temp1\"}",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "cpu temp",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Temp",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 4,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 28
       },
       "hiddenSeries": false,
       "id": 81,
@@ -3235,899 +4028,6 @@
         "align": false,
         "alignLevel": null
       }
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#299c46"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last month",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 23
-      },
-      "id": 50,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "ETH",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 30d > 16))",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Monthly Earnings",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last week",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 15,
-        "y": 23
-      },
-      "id": 49,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.3",
-      "postfix": "ETH",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 7d > 16))",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Weekly Earnings",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#d44a3a",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last day",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 18,
-        "y": 23
-      },
-      "id": 48,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "ETH",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1d > 16))",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Daily Earnings",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last hour",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 23
-      },
-      "id": 77,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "ETH",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "#5794F2",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1h > 16))",
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 3,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Hourly Earnings",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last month",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 26
-      },
-      "id": 84,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 30d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[30d:]))) * (365/30)",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "annualized monthly return",
-          "refId": "B"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Monthly Return, Annualized",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last week",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 15,
-        "y": 26
-      },
-      "id": 83,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "annualized weekly return",
-      "targets": [
-        {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 7d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[7d:]))) * (365/7)",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "annualized weekly return",
-          "refId": "B"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Weekly Return, Annualized",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last day",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 18,
-        "y": 26
-      },
-      "id": 69,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "annualized daily return",
-      "targets": [
-        {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1d:]))) * 365",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "annualized daily return",
-          "refId": "B"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Daily Return, Annualized",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last hour",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 26
-      },
-      "id": 82,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "annualized hourly return",
-      "targets": [
-        {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1h > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1h:]))) * 365 * 24",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "annualized hourly return",
-          "refId": "B"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Hourly Return, Annualized",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#C4162A",
-        "#C4162A",
-        "#C4162A"
-      ],
-      "datasource": null,
-      "decimals": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 12,
-        "x": 0,
-        "y": 29
-      },
-      "id": 61,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "20%",
-      "prefix": "",
-      "prefixFontSize": "20%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "1",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "0,0",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "ALERTS",
-      "type": "singlestat",
-      "valueFontSize": "20%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "",
-          "value": "1"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
-      "dashboardFilter": "",
-      "dashboardTags": [],
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "folderId": null,
-      "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 0,
-        "y": 30
-      },
-      "id": 63,
-      "limit": 10,
-      "nameFilter": "",
-      "onlyAlertsOnDashboard": true,
-      "show": "current",
-      "sortOrder": 3,
-      "stateFilter": [
-        "no_data",
-        "execution_error",
-        "alerting",
-        "pending",
-        "paused"
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Alerts",
-      "type": "alertlist"
     }
   ],
   "refresh": "1m",
@@ -4155,5 +4055,6 @@
     ]
   },
   "timezone": "",
-  "title": "Ethereum 2.0"
+  "title": "Ethereum 2.0",
+  "version": 4
 }
