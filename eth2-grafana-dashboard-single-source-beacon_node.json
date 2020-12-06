@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [],
   "panels": [
     {
@@ -259,13 +259,13 @@
           "expr": "sum(validator_balance{job=\"validator\"})",
           "instant": true,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "vbal",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Total Validator Balance",
+      "title": "Total Validator Balance (ETH)",
       "type": "stat"
     },
     {
@@ -346,7 +346,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Total Earnings",
+      "title": "Total Earnings (ETH)",
       "type": "stat"
     },
     {
@@ -757,99 +757,281 @@
       }
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#FA6400",
-        "#FA6400",
-        "#FA6400"
-      ],
-      "datasource": null,
+      "datasource": "Prometheus",
+      "description": "Sum of all validator balances multiplied by the price of ETH in USD.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyUSD"
         },
         "overrides": []
       },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
       "gridPos": {
-        "h": 1,
-        "w": 12,
+        "h": 3,
+        "w": 3,
         "x": 0,
         "y": 4
       },
-      "id": 96,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
+      "id": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
         }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "20%",
-      "prefix": "",
-      "prefixFontSize": "20%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "1",
+          "expr": "ethusd ",
+          "hide": false,
+          "instant": true,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "ethusd",
           "refId": "A"
-        }
-      ],
-      "thresholds": "0,0",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Local Validators",
-      "type": "singlestat",
-      "valueFontSize": "20%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "",
-          "value": "null"
         },
         {
-          "op": "=",
-          "text": "",
-          "value": "1"
+          "expr": "sum(validator_balance{job=\"validator\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "balance",
+          "refId": "B"
         }
       ],
-      "valueName": "current"
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Validator Balance (USD)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "total_validator_value",
+            "binary": {
+              "left": "ethusd",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "balance"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "description": "Total earnings in USD.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "min": 0,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 4
+      },
+      "id": 101,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"})-(count(validator_balance{job=\"validator\"} > 16 and validator_statuses{job=\"validator\"} == 3)*32)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "total_balance",
+          "refId": "A"
+        },
+        {
+          "expr": "ethusd",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "ethusd",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Earnings (USD)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Total Earnings (USD)",
+            "binary": {
+              "left": "total_balance",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "ethusd"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "description": "Price of ETH in USD.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "min": 0,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 4
+      },
+      "id": 102,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "ethusd",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "ethusd",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ETH Price (USD)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Total Earnings (USD)",
+            "binary": {
+              "left": "total_balance",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "ethusd"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
     },
     {
       "datasource": null,
@@ -987,24 +1169,21 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
+      "colorBackground": true,
+      "colorValue": false,
       "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
+        "#FA6400",
+        "#FA6400",
+        "#FA6400"
       ],
       "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last hour",
       "fieldConfig": {
         "defaults": {
           "custom": {}
         },
         "overrides": []
       },
-      "format": "ETH",
+      "format": "none",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1013,12 +1192,12 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 3,
+        "h": 1,
+        "w": 12,
         "x": 0,
-        "y": 5
+        "y": 7
       },
-      "id": 77,
+      "id": 96,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1035,11 +1214,10 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "pluginVersion": "6.7.2",
       "postfix": "",
-      "postfixFontSize": "50%",
+      "postfixFontSize": "20%",
       "prefix": "",
-      "prefixFontSize": "50%",
+      "prefixFontSize": "20%",
       "rangeMaps": [
         {
           "from": "null",
@@ -1049,319 +1227,37 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "#5794F2",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1h > 16))",
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 3,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Hourly Earnings",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#d44a3a",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last day",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "ETH",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 3,
-        "y": 5
-      },
-      "id": 48,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
+        "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1d > 16))",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Daily Earnings",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last week",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "ETH",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
         "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 6,
-        "y": 5
-      },
-      "id": 49,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.3",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
         "ymax": null,
-        "ymin": 0
+        "ymin": null
       },
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 7d > 16))",
-          "instant": false,
+          "expr": "1",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "thresholds": "-0, 0.0001",
+      "thresholds": "0,0",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Weekly Earnings",
+      "title": "Local Validators",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "20%",
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
+          "text": "",
           "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#299c46"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Increase in all local validator balances over the last month",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
         },
-        "overrides": []
-      },
-      "format": "ETH",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 9,
-        "y": 5
-      },
-      "id": 50,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 30d > 16))",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Monthly Earnings",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
-          "value": "null"
+          "text": "",
+          "value": "1"
         }
       ],
       "valueName": "current"
@@ -1473,14 +1369,14 @@
       ],
       "datasource": null,
       "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last hour",
+      "description": "Increase in all local validator balances over the last hour",
       "fieldConfig": {
         "defaults": {
           "custom": {}
         },
         "overrides": []
       },
-      "format": "percentunit",
+      "format": "ETH",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1494,7 +1390,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 82,
+      "id": 77,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1526,25 +1422,26 @@
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": true,
-        "lineColor": "rgb(31, 120, 193)",
+        "lineColor": "#5794F2",
         "show": true,
         "ymax": null,
         "ymin": 0
       },
-      "tableColumn": "annualized hourly return",
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1h > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1h:]))) * 365 * 24",
-          "hide": false,
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1h > 16))",
+          "instant": false,
           "interval": "",
-          "legendFormat": "annualized hourly return",
-          "refId": "B"
+          "intervalFactor": 3,
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "thresholds": "-0, 0.0001",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Hourly Return, Annualized",
+      "title": "Hourly Earnings",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -1562,20 +1459,20 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#F2495C",
+        "#d44a3a",
         "#FADE2A",
         "#73BF69"
       ],
       "datasource": null,
       "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last day",
+      "description": "Increase in all local validator balances over the last day",
       "fieldConfig": {
         "defaults": {
           "custom": {}
         },
         "overrides": []
       },
-      "format": "percentunit",
+      "format": "ETH",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1589,197 +1486,7 @@
         "x": 3,
         "y": 8
       },
-      "id": 69,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "annualized daily return",
-      "targets": [
-        {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1d:]))) * 365",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "annualized daily return",
-          "refId": "B"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Daily Return, Annualized",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last week",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 6,
-        "y": 8
-      },
-      "id": 83,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": 0
-      },
-      "tableColumn": "annualized weekly return",
-      "targets": [
-        {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 7d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[7d:]))) * (365/7)",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "annualized weekly return",
-          "refId": "B"
-        }
-      ],
-      "thresholds": "-0, 0.0001",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Weekly Return, Annualized",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "#FADE2A",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Percentage increase in all local validator balances over the last month",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "percentunit",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 9,
-        "y": 8
-      },
-      "id": 84,
+      "id": 48,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1819,17 +1526,207 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 30d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[30d:]))) * (365/30)",
-          "hide": false,
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 1d > 16))",
+          "instant": false,
           "interval": "",
-          "legendFormat": "annualized monthly return",
-          "refId": "B"
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "thresholds": "-0, 0.0001",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Monthly Return, Annualized",
+      "title": "Daily Earnings",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Increase in all local validator balances over the last week",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "ETH",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 8
+      },
+      "id": 49,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 7d > 16))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Weekly Earnings",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#299c46"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Increase in all local validator balances over the last month",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "ETH",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 8
+      },
+      "id": 50,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) + (32 * count(validator_balance{job=\"validator\"} offset 30d > 16))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Monthly Earnings",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -2109,6 +2006,543 @@
       "type": "stat"
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last hour",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 11
+      },
+      "id": 82,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "annualized hourly return",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1h != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1h > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1h:]))) * 365 * 24",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized hourly return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Hourly Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last day",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 11
+      },
+      "id": 69,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "annualized daily return",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 1d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 1d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[1d:]))) * 365",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized daily return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Daily Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last week",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 11
+      },
+      "id": 83,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "annualized weekly return",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 7d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 7d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[7d:]))) * (365/7)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized weekly return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Weekly Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#F2495C",
+        "#FADE2A",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Percentage increase in all local validator balances over the last month",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 11
+      },
+      "id": 84,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.2",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "((sum(validator_balance{job=\"validator\"}) - sum(validator_balance{job=\"validator\"} offset 30d != 0) - (32 * count(validator_balance{job=\"validator\"} > 16)) +\t(32 * count(validator_balance{job=\"validator\"} offset 30d > 16)))/(32 * avg_over_time(count(validator_balance{job=\"validator\"} > 16)[30d:]))) * (365/30)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "annualized monthly return",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "-0, 0.0001",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Monthly Return, Annualized",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": true,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#73BF69",
+        "#73BF69"
+      ],
+      "datasource": null,
+      "decimals": 4,
+      "description": "Average validator balance across the network",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 11
+      },
+      "id": 33,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.7.3",
+      "postfix": "ETH",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "eth",
+      "targets": [
+        {
+          "expr": "validators_total_balance{state=\"Active\",job=\"beacon node\"} / validator_count{state=\"Active\",job=\"beacon node\"} / 1000000000",
+          "interval": "",
+          "legendFormat": "eth",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "32",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Avg. Balance",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "datasource": null,
+      "description": "Estimated length of time until all pending and exiting validators have cleared the queues.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 11
+      },
+      "id": 87,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "expr": "((validator_count{state=\"Pending\",job=\"beacon node\"}/4)*6.4)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "pending",
+          "refId": "B"
+        },
+        {
+          "expr": "((validator_count{state=\"Exiting\",job=\"beacon node\"}/4)*6.4)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "exiting",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Queue Lengths",
+      "type": "stat"
+    },
+    {
       "columns": [],
       "datasource": null,
       "description": "validator stats by public key over the lifetime of the validator process ",
@@ -2120,10 +2554,10 @@
       },
       "fontSize": "100%",
       "gridPos": {
-        "h": 10,
+        "h": 7,
         "w": 12,
         "x": 0,
-        "y": 11
+        "y": 14
       },
       "id": 54,
       "interval": "",
@@ -2405,163 +2839,6 @@
       "title": "Validator Process Stats",
       "transform": "table",
       "type": "table-old"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorValue": true,
-      "colors": [
-        "#d44a3a",
-        "#73BF69",
-        "#73BF69"
-      ],
-      "datasource": null,
-      "decimals": 4,
-      "description": "Average validator balance across the network",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 11
-      },
-      "id": 33,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.3",
-      "postfix": "ETH",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "eth",
-      "targets": [
-        {
-          "expr": "validators_total_balance{state=\"Active\",job=\"beacon node\"} / validator_count{state=\"Active\",job=\"beacon node\"} / 1000000000",
-          "interval": "",
-          "legendFormat": "eth",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "32",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Avg. Balance",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
-      "datasource": null,
-      "description": "Estimated length of time until all pending and exiting validators have cleared the queues.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "m"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 11
-      },
-      "id": 87,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "expr": "((validator_count{state=\"Pending\",job=\"beacon node\"}/4)*6.4)",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "pending",
-          "refId": "B"
-        },
-        {
-          "expr": "((validator_count{state=\"Exiting\",job=\"beacon node\"}/4)*6.4)",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "exiting",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Queue Lengths",
-      "type": "stat"
     },
     {
       "cacheTimeout": null,
@@ -4055,6 +4332,5 @@
     ]
   },
   "timezone": "",
-  "title": "Ethereum 2.0",
-  "version": 4
+  "title": "Ethereum 2",
 }
