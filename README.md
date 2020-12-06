@@ -3,13 +3,13 @@ Grafana dashboards for Prysmatic Labs Prysm Eth2 client.
 
 ![Eth2 Grafana Dashboard for Prysm](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/images/eth2-grafana-dashboard-pyrmont.jpg)
 
-Host stats require Prometheus node_exporter, and ping stats require Prometheus blackbox_exporter. Panels requiring these modules can be manually removed from the dashboard after installation.
+Host stats require node_exporter, ping stats require blackbox_exporter, and ETH price requires blackbox_exporter. Panels requiring these modules can be manually removed from the dashboard after installation if you choose not to install these additional components.
 
 ## High Level Installation
-This installation assumes that you are running Prysm, Grafana, Prometheus, node_exporter, and blackbox_exporter on the same system, and that only default ports are used.
+This installation assumes that you are running Prysm, Grafana, Prometheus, node_exporter, blackbox_exporter, and json_exporter on the same system, and that only default ports are used.
 
 1. Install [node_exporter](https://github.com/prometheus/node_exporter) if you would like to see system information, such as CPU utilization, memory use, CPU temperature, disk usage, and network traffic.
-1. If you would like to see ping (network latency) information, install [blackbox_exporter] using the following configuration file.
+2. If you would like to see ping (network latency) information, install [blackbox_exporter](https://github.com/prometheus/blackbox_exporter) using the following configuration file.
 
 ```
 modules:
@@ -20,7 +20,16 @@ modules:
                         preferred_ip_protocol: ipv4
 ```
 
-1. Install [Prometheus](https://prometheus.io/) using the following configuration file.
+3. Install [json_exporter](https://github.com/prometheus-community/json_exporter) if you would like to see ETH price information. Use the following configuration file.
+
+```
+metrics:
+- name: ethusd
+  path: $.ethereum.usd
+  help: Ethereum (ETH) price in USD
+  ```
+  
+4. Install [Prometheus](https://prometheus.io/) using the following configuration file.
 
 ```
 global:
@@ -71,11 +80,27 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
+  - job_name: json_exporter
+    static_configs:
+    - targets:
+      - 127.0.0.1:7979
+  - job_name: json
+    metrics_path: /probe
+    static_configs:
+    - targets:
+      - https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd
+    relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 127.0.0.1:7979
 ```
 
-1. Install [Grafana](https://grafana.com/).
-1. Login to Grafana and add `http://XXX.XXX.XXX.XXX:9090/` as a Prometheus data source.
-1. Add the [Prysm dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-dashboard-single-source-beacon_node.json) to Grafana.
+5. Install [Grafana](https://grafana.com/).
+6. Login to Grafana and add `http://XXX.XXX.XXX.XXX:9090/` as a Prometheus data source.
+7. Add the [Prysm dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-dashboard-single-source-beacon_node.json) to Grafana.
 
 ## Detailed Ubuntu 20.04 Installation
 Adapted from my [instructions for setting up a Prysm staking system on Ubuntu 20.04](https://github.com/metanull-operator/eth2-ubuntu).
@@ -167,7 +192,25 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
+  - job_name: json_exporter
+    static_configs:
+    - targets:
+      - 127.0.0.1:7979
+  - job_name: json
+    metrics_path: /probe
+    static_configs:
+    - targets:
+      - https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd
+    relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 127.0.0.1:7979
 ```
+
+**Note:** Users of earlier versions of these instructions may have the beacon node job name set to "beacon" instead of "beacon node". When choosing a Grafana dashboard from this repository, please select [this dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-dashboard-single-source.json) if you are using "beacon" as the job name, and [this dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-dashboard-single-source-beacon_node.json) if you are using "beacon node" as the job name.
 
 Change the ownership of the prometheus configuration directory to the prometheus user.
 
@@ -257,11 +300,11 @@ Default username `admin`. Default password `admin`. Grafana will ask you to set 
 
 #### Install Grafana Dashboard
 1. Hover over the plus symbol icon in the left-hand menu, then click on Import.
-2. Copy and paste the dashboard at [https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/eth2-grafana-dashboard-single-source-beacon_node.json](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/eth2-grafana-dashboard-single-source.json) into the "Import via panel json" text box on the screen.
+2. Copy and paste the dashboard at [https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/eth2-grafana-dashboard-single-source-beacon_node.json](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/eth2-grafana-dashboard-single-source-beacon_node.json) into the "Import via panel json" text box on the screen. If you used an older version of these instructions, where the Prometheus configuration file uses the beacon node job name of "beacon" instead of "beacon node", please [use this dashboard](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/eth2-grafana-dashboard-single-source.json) instead for backwards compatibility.
 3. Then click the Load button.
 4. Then click the Import button.
 
-Note: Some panels will not display data until all required software is running. Various portions of this dashboard are directly or indirectly dependent on Prometheus, Prysm beacon chain, Prysm validator, node_exporter, and blackbox exporter.
+**Note:** Some panels will not display data until all required software is running. Various portions of this dashboard are directly or indirectly dependent on Prometheus, Prysm beacon chain, Prysm validator, node_exporter, and blackbox exporter.
 
 #### Final Grafana Dashboard Configuration
 A few of the queries driving the Grafana dashboard may need different settings, depending on your hardware.
@@ -352,6 +395,83 @@ Reload the systemd service file configurations, start node_exporter, then enable
 sudo systemctl daemon-reload
 sudo systemctl start node_exporter.service
 sudo systemctl enable node_exporter.service
+```
+
+### json_exporter
+#### Create User Account
+```console
+sudo adduser --system json_exporter --group --no-create-home
+```
+
+#### Install json_exporter
+```console
+cd
+git clone https://github.com/prometheus-community/json_exporter.git
+cd json_exporter
+make build
+sudo cp json_exporter /usr/local/bin/
+sudo chown json_exporter.json_exporter /usr/local/bin/json_exporter
+```
+
+#### Configure json_exporter
+Create a directory for the json_exporter configuration file, and make it owned by the json_exporter account.
+
+```console
+sudo mkdir /etc/json_exporter
+sudo chown json_exporter.json_exporter /etc/json_exporter
+```
+
+Edit the json_exporter configuration file.
+
+```console
+sudo nano /etc/json_exporter/json_exporter.yml
+```
+
+Copy and paste the following text into the json_exporter.yml file. 
+
+```
+metrics:
+- name: ethusd
+  path: $.ethereum.usd
+  help: Ethereum (ETH) price in USD
+```
+
+Change ownership of the configuration file to the json_exporter account.
+
+```console
+sudo chown json_exporter.json_exporter /etc/json_exporter/json_exporter.yml
+```
+
+#### Set Up System Service
+Set up systemd to automatically start json_exporter. It will also restart the software if it stops.
+
+```console
+sudo nano /etc/systemd/system/json_exporter.service
+```
+
+Copy and paste the following text into the json_exporter.service file.
+
+```
+[Unit]
+Description=JSON Exporter
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+User=json_exporter
+ExecStart=/usr/local/bin/json_exporter
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Reload the systemd service file configurations, start node_exporter, then enable the json_exporter service to have it start automatically on reboot.
+
+```console
+sudo systemctl daemon-reload
+sudo systemctl start json_exporter.service
+sudo systemctl enable json_exporter.service
 ```
 
 ## Optional
