@@ -20,7 +20,8 @@ modules:
                         preferred_ip_protocol: ipv4
 ```
 
-3. Install [json_exporter](https://github.com/prometheus-community/json_exporter) if you would like to see ETH price information. Use the following configuration file.
+3. Install go
+4. Install [json_exporter](https://github.com/prometheus-community/json_exporter) if you would like to see ETH price information. Use the following configuration file.
 
 ```
 metrics:
@@ -29,7 +30,7 @@ metrics:
   help: Ethereum (ETH) price in USD
   ```
   
-4. Install [Prometheus](https://prometheus.io/) using the following configuration file.
+5. Install [Prometheus](https://prometheus.io/) using the following configuration file.
 
 ```
 global:
@@ -98,9 +99,9 @@ scrape_configs:
       replacement: 127.0.0.1:7979
 ```
 
-5. Install [Grafana](https://grafana.com/).
-6. Login to Grafana and add `http://XXX.XXX.XXX.XXX:9090/` as a Prometheus data source.
-7. Add the [Prysm dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-dashboard-single-source-beacon_node.json) to Grafana.
+6. Install [Grafana](https://grafana.com/).
+7. Login to Grafana and add `http://XXX.XXX.XXX.XXX:9090/` as a Prometheus data source.
+8. Add the [Prysm dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-dashboard-single-source-beacon_node.json) to Grafana.
 
 ## Detailed Ubuntu 20.04 Installation
 Adapted from my [instructions for setting up a Prysm staking system on Ubuntu 20.04](https://github.com/metanull-operator/eth2-ubuntu).
@@ -122,7 +123,7 @@ tar xzvf prometheus-2.22.1.linux-amd64.tar.gz
 cd prometheus-2.22.1.linux-amd64
 sudo cp promtool /usr/local/bin/
 sudo cp prometheus /usr/local/bin/
-sudo chown root.root /usr/local/bin/promtool /usr/local/bin/prometheus
+sudo chown root:root /usr/local/bin/promtool /usr/local/bin/prometheus
 sudo chmod 755 /usr/local/bin/promtool /usr/local/bin/prometheus
 cd
 rm prometheus-2.22.1.linux-amd64.tar.gz
@@ -215,7 +216,7 @@ scrape_configs:
 Change the ownership of the prometheus configuration directory to the prometheus user.
 
 ```console
-sudo chown -R prometheus.prometheus /etc/prometheus
+sudo chown -R prometheus:prometheus /etc/prometheus
 ```
 
 #### Data Directory
@@ -223,7 +224,7 @@ Make a directory for prometheus files, owned by the prometheus user account, and
 
 ```console
 sudo mkdir /var/lib/prometheus
-sudo chown prometheus.prometheus /var/lib/prometheus
+sudo chown prometheus:prometheus /var/lib/prometheus
 sudo chmod 755 /var/lib/prometheus
 ```
 
@@ -398,6 +399,19 @@ sudo systemctl enable node_exporter.service
 ```
 
 ### json_exporter
+#### Install go
+```console
+sudo apt-get install golang-1.14-go
+
+# Create a symlink from /usr/bin/go to the new go installation
+sudo ln -s /usr/lib/go-1.14/bin/go /usr/bin/go
+```
+
+#### Install git
+```console
+sudo apt-get install git
+```
+
 #### Create User Account
 ```console
 sudo adduser --system json_exporter --group --no-create-home
@@ -410,7 +424,7 @@ git clone https://github.com/prometheus-community/json_exporter.git
 cd json_exporter
 make build
 sudo cp json_exporter /usr/local/bin/
-sudo chown json_exporter.json_exporter /usr/local/bin/json_exporter
+sudo chown json_exporter:json_exporter /usr/local/bin/json_exporter
 ```
 
 #### Configure json_exporter
@@ -418,7 +432,7 @@ Create a directory for the json_exporter configuration file, and make it owned b
 
 ```console
 sudo mkdir /etc/json_exporter
-sudo chown json_exporter.json_exporter /etc/json_exporter
+sudo chown json_exporter:json_exporter /etc/json_exporter
 ```
 
 Edit the json_exporter configuration file.
@@ -439,7 +453,7 @@ metrics:
 Change ownership of the configuration file to the json_exporter account.
 
 ```console
-sudo chown json_exporter.json_exporter /etc/json_exporter/json_exporter.yml
+sudo chown json_exporter:json_exporter /etc/json_exporter/json_exporter.yml
 ```
 
 #### Set Up System Service
@@ -492,7 +506,7 @@ cd
 wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.18.0/blackbox_exporter-0.18.0.linux-amd64.tar.gz
 tar xvzf blackbox_exporter-0.18.0.linux-amd64.tar.gz
 sudo cp blackbox_exporter-0.18.0.linux-amd64/blackbox_exporter /usr/local/bin/
-sudo chown blackbox_exporter.blackbox_exporter /usr/local/bin/blackbox_exporter
+sudo chown blackbox_exporter:blackbox_exporter /usr/local/bin/blackbox_exporter
 sudo chmod 755 /usr/local/bin/blackbox_exporter
 ```
 
@@ -512,7 +526,7 @@ rm blackbox_exporter-0.18.0.linux-amd64.tar.gz
 
 ```console
 sudo mkdir /etc/blackbox_exporter
-sudo chown blackbox_exporter.blackbox_exporter /etc/blackbox_exporter
+sudo chown blackbox_exporter:blackbox_exporter /etc/blackbox_exporter
 ```
 
 Edit the blackbox_exporter configuration file.
@@ -535,7 +549,7 @@ modules:
 Change ownership of the configuration file to the blackbox_exporter account.
 
 ```console
-sudo chown blackbox_exporter.blackbox_exporter /etc/blackbox_exporter/blackbox.yml
+sudo chown blackbox_exporter:blackbox_exporter /etc/blackbox_exporter/blackbox.yml
 ```
 
 #### Set Up System Service
