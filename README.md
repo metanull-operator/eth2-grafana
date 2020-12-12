@@ -153,7 +153,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:9090']
-  - job_name: 'beacon'
+  - job_name: 'beacon node'
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:8080']
