@@ -3,8 +3,9 @@ Here you can find dashboards for Ethereum 2 staking systems to allow you to moni
 
 This document covers a staking dashboard for [Prysmatic Labs Prysm](https://github.com/prysmaticlabs/prysm/). Other dashboards are presently available as follows:
 
-- [Nimbus Eth2](https://github.com/metanull-operator/eth2-grafana/nimbus/)
+- [Nimbus Eth2 Dashboard](https://github.com/metanull-operator/eth2-grafana/tree/master/nimbus)
 
+**Prysmatic Labs Prysm Dashboard**
 ![Eth2 Grafana Dashboard for Prysm](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/images/eth2-grafana-dashboard-pyrmont.jpg)
 
 Host stats require node_exporter, ping stats require blackbox_exporter, and ETH price requires blackbox_exporter. Panels requiring these modules can be manually removed from the dashboard after installation if you choose not to install these additional components.
