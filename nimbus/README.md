@@ -3,7 +3,7 @@
 - Nimbus - This document.
 - Prysm Dashboard - Here.
 
-![Eth2 Grafana Dashboard for Nimbus](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/images/eth2-grafana-nimbus-01-pyrmont.jpg)
+![Eth2 Grafana Dashboard for Nimbus](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/images/eth2-grafana-nimbus-dashboard.jpg)
 
 Host stats require node_exporter, ping stats require blackbox_exporter, and ETH price requires blackbox_exporter. Panels requiring these modules can be manually removed from the dashboard after installation if you choose not to install these additional components.
 
@@ -14,8 +14,8 @@ This installation assumes that you are running Nimbus, Grafana, Prometheus, node
 
 1. Build Nimbus using `NIMFLAGS="-d:insecure"` command-line parameter, following the [Grafana and Prometheus](https://nimbus.guide/metrics-pretty-pictures.html) section of [The Nimbus Book](https://nimbus.guide/)
 2. Run Nimbus with RPC flags `--metrics --metrics-port 8008`
-1. Install [node_exporter](https://github.com/prometheus/node_exporter) if you would like to see system information, such as CPU utilization, memory use, CPU temperature, disk usage, and network traffic.
-2. If you would like to see ping (network latency) information, install [blackbox_exporter](https://github.com/prometheus/blackbox_exporter) using the following configuration file.
+3. Install [node_exporter](https://github.com/prometheus/node_exporter) if you would like to see system information, such as CPU utilization, memory use, CPU temperature, disk usage, and network traffic.
+4. If you would like to see ping (network latency) information, install [blackbox_exporter](https://github.com/prometheus/blackbox_exporter) using the following configuration file.
 
 ```
 modules:
@@ -26,8 +26,8 @@ modules:
                         preferred_ip_protocol: ipv4
 ```
 
-3. Install go
-4. Install [json_exporter](https://github.com/prometheus-community/json_exporter) if you would like to see ETH price information. Use the following configuration file.
+5. Install go
+6. Install [json_exporter](https://github.com/prometheus-community/json_exporter) if you would like to see ETH price information. Use the following configuration file.
 
 ```
 metrics:
@@ -36,7 +36,7 @@ metrics:
   help: Ethereum (ETH) price in USD
   ```
   
-5. Install [Prometheus](https://prometheus.io/) using the following configuration file.
+7. Install [Prometheus](https://prometheus.io/) using the following configuration file.
 
 ```
 global:
@@ -105,9 +105,9 @@ scrape_configs:
       replacement: 127.0.0.1:7979
 ```
 
-6. Install [Grafana](https://grafana.com/).
-7. Login to Grafana and add `http://XXX.XXX.XXX.XXX:9090/` as a Prometheus data source.
-8. Add the [Nimbus dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-nimbus-dashboard.json) to Grafana.
+8. Install [Grafana](https://grafana.com/).
+9. Login to Grafana and add `http://XXX.XXX.XXX.XXX:9090/` as a Prometheus data source.
+10. Add the [Nimbus dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-nimbus-dashboard.json) to Grafana.
 
 ## Detailed Ubuntu 20.04 Installation
 Adapted for Nimbus from my [instructions for setting up a Prysm staking system on Ubuntu 20.04](https://github.com/metanull-operator/eth2-ubuntu).
