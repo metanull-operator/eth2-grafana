@@ -1,5 +1,9 @@
 # eth2-grafana
-Grafana dashboards for Prysmatic Labs Prysm Eth2 client.
+Here you can find dashboards for Ethereum 2 staking systems to allow you to monitor your staking hardware, software, and earnings. Each dashboard is specific to the Ethereum 2 client it serves, due to differences in available metrics.
+
+This document covers a staking dashboard for [Prysmatic Labs Prysm](https://github.com/prysmaticlabs/prysm/). Other dashboards are presently available as follows:
+
+- [Nimbus Eth2](https://github.com/metanull-operator/eth2-grafana/nimbus/)
 
 ![Eth2 Grafana Dashboard for Prysm](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/images/eth2-grafana-dashboard-pyrmont.jpg)
 
@@ -26,7 +30,7 @@ modules:
 ```
 metrics:
 - name: ethusd
-  path: $.ethereum.usd
+  path: {.ethereum.usd}
   help: Ethereum (ETH) price in USD
   ```
   
@@ -446,7 +450,7 @@ Copy and paste the following text into the json_exporter.yml file.
 ```
 metrics:
 - name: ethusd
-  path: $.ethereum.usd
+  path: {.ethereum.usd}
   help: Ethereum (ETH) price in USD
 ```
 
