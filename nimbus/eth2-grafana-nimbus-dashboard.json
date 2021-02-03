@@ -351,7 +351,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "attached_validator_balance_total{job=\"beacon node\"}/1000000000",
+          "expr": "attached_validator_balance_total{job=\"nimbus\"}/1000000000",
           "instant": true,
           "interval": "",
           "legendFormat": "vbal",
@@ -432,7 +432,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "sum(attached_validator_balance{job=\"beacon node\"})/1000000000-(count(attached_validator_balance{job=\"beacon node\"} > 16)*32)",
+          "expr": "sum(attached_validator_balance{job=\"nimbus\"})/1000000000-(count(attached_validator_balance{job=\"nimbus\"} > 16)*32)",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -517,7 +517,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(attached_validator_balance{job=\"beacon node\"})/1000000000-(count(attached_validator_balance{job=\"beacon node\"} > 16)*32))/(count(attached_validator_balance{job=\"beacon node\"} > 16)*32)  ",
+          "expr": "(sum(attached_validator_balance{job=\"nimbus\"})/1000000000-(count(attached_validator_balance{job=\"nimbus\"} > 16)*32))/(count(attached_validator_balance{job=\"nimbus\"} > 16)*32)  ",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -843,7 +843,7 @@
       ],
       "targets": [
         {
-          "expr": "label_replace(max by(pubkey) (attached_validator_balance{job=\"beacon node\"}/1000000000), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{8}).*\") ",
+          "expr": "label_replace(max by(pubkey) (attached_validator_balance{job=\"nimbus\"}/1000000000), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{8}).*\") ",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -919,7 +919,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "libp2p_peers{job=\"beacon node\"}",
+          "expr": "libp2p_peers{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -1002,10 +1002,10 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "{instance=\"127.0.0.1:8008\", job=\"beacon node\"}",
+      "tableColumn": "{instance=\"127.0.0.1:8008\", job=\"nimbus\"}",
       "targets": [
         {
-          "expr": "(time()-process_start_time_seconds{job=\"beacon node\"})/3600",
+          "expr": "(time()-process_start_time_seconds{job=\"nimbus\"})/3600",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -1073,7 +1073,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_active_validators{job=\"beacon node\"} ",
+          "expr": "beacon_active_validators{job=\"nimbus\"} ",
           "instant": true,
           "interval": "",
           "legendFormat": "active",
@@ -1143,7 +1143,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "clamp_min((1-(4*((finalization_delay{job=\"beacon node\"}-2)/100))),0)",
+          "expr": "clamp_min((1-(4*((finalization_delay{job=\"nimbus\"}-2)/100))),0)",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -1206,7 +1206,7 @@
           "refId": "A"
         },
         {
-          "expr": "attached_validator_balance_total{job=\"beacon node\"}/1000000000",
+          "expr": "attached_validator_balance_total{job=\"nimbus\"}/1000000000",
           "hide": false,
           "instant": true,
           "interval": "",
@@ -1300,7 +1300,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "sum(attached_validator_balance{job=\"beacon node\"})/1000000000-(count(attached_validator_balance{job=\"beacon node\"} > 16)*32)",
+          "expr": "sum(attached_validator_balance{job=\"nimbus\"})/1000000000-(count(attached_validator_balance{job=\"nimbus\"} > 16)*32)",
           "instant": true,
           "interval": "",
           "legendFormat": "total_balance",
@@ -1479,7 +1479,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "libp2p_peers{job=\"beacon node\"}",
+          "expr": "libp2p_peers{job=\"nimbus\"}",
           "interval": "",
           "legendFormat": "peers",
           "refId": "A"
@@ -1571,14 +1571,14 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_current_justified_epoch{job=\"beacon node\"}",
+          "expr": "beacon_current_justified_epoch{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "justified",
           "refId": "C"
         },
         {
-          "expr": "beacon_finalized_epoch {job=\"beacon node\"} ",
+          "expr": "beacon_finalized_epoch {job=\"nimbus\"} ",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -1634,14 +1634,14 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_slot{job=\"beacon node\"}",
+          "expr": "beacon_slot{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "current slot",
           "refId": "A"
         },
         {
-          "expr": "beacon_head_slot{job=\"beacon node\"}",
+          "expr": "beacon_head_slot{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "head slot",
@@ -1815,25 +1815,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "beacon_pending_deposits{job=\"beacon node\"}",
+          "expr": "beacon_pending_deposits{job=\"nimbus\"}",
           "interval": "",
           "legendFormat": "pending",
           "refId": "B"
         },
         {
-          "expr": "validator_count{state=\"Exiting\",job=\"beacon node\"}",
-          "interval": "",
-          "legendFormat": "exiting",
-          "refId": "A"
-        },
-        {
-          "expr": "validator_count{state=\"Slashing\",job=\"beacon node\"}",
-          "interval": "",
-          "legendFormat": "slashing",
-          "refId": "C"
-        },
-        {
-          "expr": "beacon_active_validators{job=\"beacon node\"}",
+          "expr": "beacon_active_validators{job=\"nimbus\"}",
           "interval": "",
           "legendFormat": "active validators",
           "refId": "D"
@@ -1955,7 +1943,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(attached_validator_balance{job=\"beacon node\"})/1000000000 - sum(attached_validator_balance{job=\"beacon node\"} offset 1h != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 1h > 16))",
+          "expr": "sum(attached_validator_balance{job=\"nimbus\"})/1000000000 - sum(attached_validator_balance{job=\"nimbus\"} offset 1h != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 1h > 16))",
           "instant": false,
           "interval": "",
           "intervalFactor": 3,
@@ -2051,7 +2039,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(attached_validator_balance{job=\"beacon node\"})/1000000000 - sum(attached_validator_balance{job=\"beacon node\"} offset 1d != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 1d > 16))",
+          "expr": "sum(attached_validator_balance{job=\"nimbus\"})/1000000000 - sum(attached_validator_balance{job=\"nimbus\"} offset 1d != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 1d > 16))",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -2146,7 +2134,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(attached_validator_balance{job=\"beacon node\"})/1000000000 - sum(attached_validator_balance{job=\"beacon node\"} offset 7d != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 7d > 16))",
+          "expr": "sum(attached_validator_balance{job=\"nimbus\"})/1000000000 - sum(attached_validator_balance{job=\"nimbus\"} offset 7d != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 7d > 16))",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -2241,7 +2229,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(attached_validator_balance{job=\"beacon node\"})/1000000000 - sum(attached_validator_balance{job=\"beacon node\"} offset 30d != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 30d > 16))",
+          "expr": "sum(attached_validator_balance{job=\"nimbus\"})/1000000000 - sum(attached_validator_balance{job=\"nimbus\"} offset 30d != 0)/1000000000 - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 30d > 16))",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -2306,14 +2294,14 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_blocks_proposed_total{job=\"beacon node\"}",
+          "expr": "beacon_blocks_proposed_total{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "proposals",
           "refId": "B"
         },
         {
-          "expr": "beacon_attestations_sent_total{job=\"beacon node\"}",
+          "expr": "beacon_attestations_sent_total{job=\"nimbus\"}",
           "interval": "",
           "legendFormat": "attestations",
           "refId": "A"
@@ -2367,13 +2355,13 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_proposer_slashings_received_total{job=\"beacon node\"}",
+          "expr": "beacon_proposer_slashings_received_total{job=\"nimbus\"}",
           "interval": "",
           "legendFormat": "proposer",
           "refId": "A"
         },
         {
-          "expr": "beacon_attester_slashings_received_total{job=\"beacon node\"}",
+          "expr": "beacon_attester_slashings_received_total{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "attester",
@@ -2458,7 +2446,7 @@
       "tableColumn": "annualized hourly return",
       "targets": [
         {
-          "expr": "((sum(attached_validator_balance{job=\"beacon node\"}) - sum(attached_validator_balance{job=\"beacon node\"} offset 1h != 0) - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 1h > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"beacon node\"} > 16)[1h:])))/1000000000 * 365 * 24",
+          "expr": "((sum(attached_validator_balance{job=\"nimbus\"}) - sum(attached_validator_balance{job=\"nimbus\"} offset 1h != 0) - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 1h > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"nimbus\"} > 16)[1h:])))/1000000000 * 365 * 24",
           "hide": false,
           "interval": "",
           "legendFormat": "annualized hourly return",
@@ -2553,7 +2541,7 @@
       "tableColumn": "annualized daily return",
       "targets": [
         {
-          "expr": "((sum(attached_validator_balance{job=\"beacon node\"}) - sum(attached_validator_balance{job=\"beacon node\"} offset 1d != 0) - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 1d > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"beacon node\"} > 16)[1d:])))/1000000000 * 365",
+          "expr": "((sum(attached_validator_balance{job=\"nimbus\"}) - sum(attached_validator_balance{job=\"nimbus\"} offset 1d != 0) - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 1d > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"nimbus\"} > 16)[1d:])))/1000000000 * 365",
           "hide": false,
           "interval": "",
           "legendFormat": "annualized daily return",
@@ -2648,7 +2636,7 @@
       "tableColumn": "annualized weekly return",
       "targets": [
         {
-          "expr": "((sum(attached_validator_balance{job=\"beacon node\"}) - sum(attached_validator_balance{job=\"beacon node\"} offset 7d != 0) - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 7d > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"beacon node\"} > 16)[7d:])))/1000000000 * (365/7)",
+          "expr": "((sum(attached_validator_balance{job=\"nimbus\"}) - sum(attached_validator_balance{job=\"nimbus\"} offset 7d != 0) - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 7d > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"nimbus\"} > 16)[7d:])))/1000000000 * (365/7)",
           "hide": false,
           "interval": "",
           "legendFormat": "annualized weekly return",
@@ -2743,7 +2731,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "((sum(attached_validator_balance{job=\"beacon node\"}) - sum(attached_validator_balance{job=\"beacon node\"} offset 30d != 0) - (32 * count(attached_validator_balance{job=\"beacon node\"} > 16)) + (32 * count(attached_validator_balance{job=\"beacon node\"} offset 30d > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"beacon node\"} > 16)[30d:])))/1000000000 * (365/30)",
+          "expr": "((sum(attached_validator_balance{job=\"nimbus\"}) - sum(attached_validator_balance{job=\"nimbus\"} offset 30d != 0) - (32 * count(attached_validator_balance{job=\"nimbus\"} > 16)) + (32 * count(attached_validator_balance{job=\"nimbus\"} offset 30d > 16)))/(32 * avg_over_time(count(attached_validator_balance{job=\"nimbus\"} > 16)[30d:])))/1000000000 * (365/30)",
           "hide": false,
           "interval": "",
           "legendFormat": "annualized monthly return",
@@ -2808,7 +2796,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_voluntary_exits_received_total{job=\"beacon node\"}",
+          "expr": "beacon_voluntary_exits_received_total{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "voluntary exits received",
@@ -2867,7 +2855,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "failed_web3_requests_total{job=\"beacon node\"}",
+          "expr": "failed_web3_requests_total{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "failed requests",
@@ -2921,7 +2909,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "beacon_pending_deposits{job=\"beacon node\"}",
+          "expr": "beacon_pending_deposits{job=\"nimbus\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "pending",
@@ -2977,7 +2965,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "((beacon_pending_deposits{job=\"beacon node\"}/4)*6.4)",
+          "expr": "((beacon_pending_deposits{job=\"nimbus\"}/4)*6.4)",
           "instant": true,
           "interval": "",
           "legendFormat": "pending",
@@ -3150,7 +3138,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "nim_gc_mem_occupied_bytes{job=\"beacon node\"}",
+          "expr": "nim_gc_mem_occupied_bytes{job=\"nimbus\"}",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "beacon memory",
@@ -3932,6 +3920,5 @@
   },
   "timezone": "",
   "title": "Ethereum 2",
-  "uid": "SeoGXcYMz",
-  "version": 34
+  "version": 1
 }
