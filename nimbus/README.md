@@ -3,7 +3,7 @@
 - Nimbus - This document.
 - Prysm Dashboard - Here.
 
-![Eth2 Grafana Dashboard for Nimbus](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/images/eth2-grafana-nimbus-dashboard.jpg)
+![Eth2 Grafana Dashboard for Nimbus](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/images/eth2-grafana-nimbus-dashboard.jpg)
 
 Host stats require node_exporter, ping stats require blackbox_exporter, and ETH price requires blackbox_exporter. Panels requiring these modules can be manually removed from the dashboard after installation if you choose not to install these additional components.
 
