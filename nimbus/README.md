@@ -4,7 +4,7 @@ Here you can find dashboards for Ethereum 2 staking systems to allow you to moni
 
 This document covers a staking dashboard for [Nimbus Eth2](https://github.com/status-im/nimbus-eth2). Other dashboards are presently available as follows:
 
-- [Prysm Dashboard](https://github.com/metanull-operator/eth2-grafana/)
+- [Prysmatic Labs Prysm Dashboard](https://github.com/metanull-operator/eth2-grafana/)
 
 **Nimbus Eth2 Dashboard**
 ![Eth2 Grafana Dashboard for Nimbus](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/images/eth2-grafana-nimbus-dashboard.jpg)
