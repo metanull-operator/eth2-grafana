@@ -1,19 +1,23 @@
+
 # eth2-grafana - Ethereum 2 Grafana Dashboards
+Here you can find dashboards for Ethereum 2 staking systems to allow you to monitor your staking hardware, software, and earnings. Each dashboard is specific to the Ethereum 2 client it serves, due to differences in available metrics.
 
-- Nimbus - This document.
-- Prysm Dashboard - Here.
+This document covers a staking dashboard for [Nimbus Eth2](https://github.com/status-im/nimbus-eth2). Other dashboards are presently available as follows:
 
+- [Prysm Dashboard](https://github.com/metanull-operator/eth2-grafana/)
+
+**Nimbus Eth2 Dashboard**
 ![Eth2 Grafana Dashboard for Nimbus](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/images/eth2-grafana-nimbus-dashboard.jpg)
 
-Host stats require node_exporter, ping stats require blackbox_exporter, and ETH price requires blackbox_exporter. Panels requiring these modules can be manually removed from the dashboard after installation if you choose not to install these additional components.
+A minimal installation requires Nimbus Eth2, Prometheus, and Grafana. Server stats require node_exporter, ping stats require blackbox_exporter, and ETH price requires json_exporter. Panels requiring these modules can be manually removed from the dashboard after installation if you choose not to install these additional components.
 
 ## High Level Installation
-Detailed installation instructions are below.
+High level installation instructions for those interested in seeing a more brief list of steps necessary to get up and running. Detailed installation instructions are in another section below.
 
 This installation assumes that you are running Nimbus, Grafana, Prometheus, node_exporter, blackbox_exporter, and json_exporter on the same system, and that only default ports are used.
 
 1. Build Nimbus using `NIMFLAGS="-d:insecure"` command-line parameter, following the [Grafana and Prometheus](https://nimbus.guide/metrics-pretty-pictures.html) section of [The Nimbus Book](https://nimbus.guide/)
-2. Run Nimbus with RPC flags `--metrics --metrics-port 8008`
+2. Run Nimbus with RPC flags `--metrics`
 3. Install [node_exporter](https://github.com/prometheus/node_exporter) if you would like to see system information, such as CPU utilization, memory use, CPU temperature, disk usage, and network traffic.
 4. If you would like to see ping (network latency) information, install [blackbox_exporter](https://github.com/prometheus/blackbox_exporter) using the following configuration file.
 
@@ -32,7 +36,7 @@ modules:
 ```
 metrics:
 - name: ethusd
-  path: $.ethereum.usd
+  path: "{.ethereum.usd}"
   help: Ethereum (ETH) price in USD
   ```
   
@@ -47,7 +51,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:9090']
-  - job_name: 'beacon node'
+  - job_name: 'nimbus'
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:8008']
@@ -55,10 +59,6 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:9100']
-  - job_name: 'validator'
-    scrape_interval: 5s
-    static_configs:
-    - targets: ['127.0.0.1:8081']
   - job_name: 'ping_google'
     metrics_path: /probe
     params:
@@ -107,32 +107,42 @@ scrape_configs:
 
 8. Install [Grafana](https://grafana.com/).
 9. Login to Grafana and add `http://XXX.XXX.XXX.XXX:9090/` as a Prometheus data source.
-10. Add the [Nimbus dashboard](https://github.com/metanull-operator/eth2-grafana/blob/master/eth2-grafana-nimbus-dashboard.json) to Grafana.
+10. Add the [Nimbus dashboard](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/eth2-grafana-nimbus-dashboard.json) to Grafana.
 
 ## Detailed Ubuntu 20.04 Installation
 Adapted for Nimbus from my [instructions for setting up a Prysm staking system on Ubuntu 20.04](https://github.com/metanull-operator/eth2-ubuntu).
 
+### Nimbus
+#### Compile Nimbus with Insecure Flag
+Compile Nimbus with the `NIMFLAGS="-d:insecure"` flag, as described in the [Grafana and Prometheus](https://nimbus.guide/metrics-pretty-pictures.html) section of [The Nimbus Book](https://nimbus.guide/).
+
+```console
+make NIMFLAGS="-d:insecure" nimbus_beacon_node
+```
+Install Nimbus in the correct location per your server setup, and update your Nimbus start-up scripts/systemd service files to include the `--metrics` flag on start-up.
+
 ### Prometheus
 #### Create User Account
+
 ```console
 sudo adduser --system prometheus --group --no-create-home
 ```
 
 #### Install Prometheus
 
-Find the URL to the latest amd64 version of Prometheus at https://prometheus.io/download/. In the commands below, replace any references to the version 2.22.1 to the latest version available.
+Find the URL to the latest amd64 version of Prometheus at https://prometheus.io/download/. In the commands below, replace any references to the version 2.24.1 to the latest version available.
 
 ```console
 cd
-wget https://github.com/prometheus/prometheus/releases/download/v2.22.1/prometheus-2.22.1.linux-amd64.tar.gz
-tar xzvf prometheus-2.22.1.linux-amd64.tar.gz
-cd prometheus-2.22.1.linux-amd64
+wget https://github.com/prometheus/prometheus/releases/download/v2.24.1/prometheus-2.24.1.linux-amd64.tar.gz
+tar xzvf prometheus-2.24.1.linux-amd64.tar.gz
+cd prometheus-2.24.1.linux-amd64
 sudo cp promtool /usr/local/bin/
 sudo cp prometheus /usr/local/bin/
 sudo chown root:root /usr/local/bin/promtool /usr/local/bin/prometheus
 sudo chmod 755 /usr/local/bin/promtool /usr/local/bin/prometheus
 cd
-rm prometheus-2.22.1.linux-amd64.tar.gz
+rm prometheus-2.24.1.linux-amd64.tar.gz
 ```
 
 #### Configure Prometheus
@@ -148,7 +158,7 @@ Create the prometheus configuration files. Open a new configuration file.
 sudo nano /etc/prometheus/prometheus.yml
 ```
 
-Copy and paste the following text into the prometheus.yml configuration file:
+Copy and paste the following text into the prometheus.yml configuration file. If you have other previously existing configurations, you will need to manually merge these lines with your existing file.
 
 ```
 global:
@@ -159,7 +169,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:9090']
-  - job_name: 'beacon node'
+  - job_name: 'nimbus'
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:8008']
@@ -167,10 +177,6 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
     - targets: ['127.0.0.1:9100']
-  - job_name: 'validator'
-    scrape_interval: 5s
-    static_configs:
-    - targets: ['127.0.0.1:8081']
   - job_name: 'ping_google'
     metrics_path: /probe
     params:
@@ -306,7 +312,7 @@ Default username `admin`. Default password `admin`. Grafana will ask you to set 
 
 #### Install Grafana Dashboard
 1. Hover over the plus symbol icon in the left-hand menu, then click on Import.
-2. Copy and paste the dashboard at [https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/nimbus-dashboard.json](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/nimbus-dashboard.json) into the "Import via panel json" text box on the screen.
+2. Copy and paste the dashboard at [https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/eth2-grafana-nimbus-dashboard.json](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/nimbus/eth2-grafana-nimbus-dashboard.json) into the "Import via panel json" text box on the screen.
 3. Then click the Load button.
 4. Then click the Import button.
 
@@ -354,14 +360,14 @@ Of the two entries shows above, the first lists my IP address on the second line
 ### node_exporter
 Node exporter allows Prometheus to record system data, such as CPU utilization, memory use, CPU temperature, and disk usage.
 
-Setup and install node_exporter using `apt-get`.
-
 #### Create User Account
 ```console
 sudo adduser --system node_exporter --group --no-create-home
 ```
 
 #### Install node_exporter
+The most current release of node_exporter as of this writing is v1.0.1. If you would like to look for a more recent version, please look [here](https://github.com/prometheus/node_exporter/releases/) and update the instructions below accordingly.
+
 ```console
 cd
 wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
@@ -451,7 +457,7 @@ Copy and paste the following text into the json_exporter.yml file.
 ```
 metrics:
 - name: ethusd
-  path: $.ethereum.usd
+  path: "{.ethereum.usd}"
   help: Ethereum (ETH) price in USD
 ```
 
@@ -499,6 +505,8 @@ sudo systemctl enable json_exporter.service
 I use blackbox_exporter to provide [ping](https://en.wikipedia.org/wiki/Ping_(networking_utility)) (network latency) data between my staking system and two DNS providers. This can also be used to see network downtime. 
 
 The Grafana dashboard in these instructions includes a panel with a ping time graph. If you choose not to install blackbox_exporter, simply remove that panel from your Grafana dashboard. It will not show data.
+
+The most current release of node_exporter as of this writing is v0.18.0. If you would like to look for a more recent version, please look [here](https://github.com/prometheus/blackbox_exporter/releases/) and update the instructions below accordingly.
 
 #### Create User Account
 ```console
