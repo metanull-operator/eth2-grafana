@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 10,
+  "id": 23,
+  "iteration": 1615567458721,
   "links": [],
   "panels": [
     {
@@ -2719,9 +2720,9 @@
           "align": "auto",
           "colorMode": null,
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 0,
@@ -2736,9 +2737,9 @@
           "align": "auto",
           "colorMode": null,
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 0,
@@ -2753,9 +2754,9 @@
           "align": "auto",
           "colorMode": null,
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 0,
@@ -2770,9 +2771,9 @@
           "align": "auto",
           "colorMode": "value",
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 0,
@@ -2787,9 +2788,9 @@
           "align": "auto",
           "colorMode": "value",
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 0,
@@ -2804,9 +2805,9 @@
           "align": "auto",
           "colorMode": "value",
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 4,
@@ -2828,9 +2829,9 @@
           "align": "auto",
           "colorMode": null,
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
@@ -2851,7 +2852,7 @@
           "colors": [
             "#F2495C",
             "#FF9830",
-            "rgba(50, 172, 45, 0.97)"
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 0,
@@ -2868,9 +2869,9 @@
           "align": "auto",
           "colorMode": null,
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "#F2495C",
+            "#FF9830",
+            "#73BF69"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 0,
@@ -3190,31 +3191,42 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorPrefix": false,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
       "datasource": null,
-      "decimals": 1,
-      "description": "The length of time the beacon chain process has been running",
+      "description": "The length of time the beacon chain and validator processes have been running.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "decimals": 1,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#F2495C",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 48
+              },
+              {
+                "color": "#299c46",
+                "value": 96
+              }
+            ]
+          },
+          "unit": "h"
         },
         "overrides": []
-      },
-      "format": "h",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -3225,64 +3237,45 @@
       "id": 45,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "(s)",
-      "postfixFontSize": "80%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "{instance=\"127.0.0.1:8080\", job=\"beacon\"}",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "(time()-process_start_time_seconds{job=\"beacon\"})/3600",
           "instant": true,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "beacon chain",
           "refId": "A"
+        },
+        {
+          "expr": "(time()-process_start_time_seconds{job=\"validator\"})/3600",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "validator",
+          "refId": "B"
         }
       ],
-      "thresholds": "48,96",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Beacon Uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "title": "Process Uptimes",
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
@@ -3362,32 +3355,25 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPostfix": true,
-      "colorPrefix": false,
-      "colorValue": true,
-      "colors": [
-        "#F2495C",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
       "datasource": null,
-      "decimals": 1,
-      "description": "The length of time the validator process has been running",
+      "description": "Versions of the currently running Prysm clients.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
         },
         "overrides": []
-      },
-      "format": "h",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -3395,67 +3381,42 @@
         "x": 18,
         "y": 18
       },
-      "id": 74,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "(s)",
-      "postfixFontSize": "80%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
+      "id": 108,
+      "options": {
+        "showHeader": false
       },
-      "tableColumn": "{instance=\"127.0.0.1:8081\", job=\"validator\"}",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "(time()-process_start_time_seconds{job=\"validator\"})/3600",
+          "expr": "max(prysm_version) by (job, version)",
+          "format": "table",
           "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "thresholds": "48,96",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Validator Uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
+      "title": "Prysm Versions",
+      "transformations": [
         {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
+          "id": "filterByRefId",
+          "options": {}
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "job",
+                "version"
+              ]
+            }
+          }
         }
       ],
-      "valueName": "current"
+      "type": "table"
     },
     {
       "cacheTimeout": null,
@@ -4481,5 +4442,7 @@
     ]
   },
   "timezone": "",
-  "title": "Ethereum 2"
+  "title": "Ethereum 2",
+  "uid": "",
+  "version": 100
 }
