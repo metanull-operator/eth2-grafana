@@ -119,19 +119,19 @@ sudo adduser --system prometheus --group --no-create-home
 
 #### Install Prometheus
 
-Find the URL to the latest amd64 version of Prometheus at https://prometheus.io/download/. In the commands below, replace any references to the version 2.22.1 to the latest version available.
+Find the URL to the latest amd64 version of Prometheus at https://prometheus.io/download/. In the commands below, replace any references to the version 2.26.0 to the latest version available.
 
 ```console
 cd
-wget https://github.com/prometheus/prometheus/releases/download/v2.22.1/prometheus-2.22.1.linux-amd64.tar.gz
-tar xzvf prometheus-2.22.1.linux-amd64.tar.gz
-cd prometheus-2.22.1.linux-amd64
+wget https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-2.26.0.linux-amd64.tar.gz
+tar xzvf prometheus-2.26.0.linux-amd64.tar.gz
+cd prometheus-2.26.0.linux-amd64
 sudo cp promtool /usr/local/bin/
 sudo cp prometheus /usr/local/bin/
 sudo chown root:root /usr/local/bin/promtool /usr/local/bin/prometheus
 sudo chmod 755 /usr/local/bin/promtool /usr/local/bin/prometheus
 cd
-rm prometheus-2.22.1.linux-amd64.tar.gz
+rm prometheus-2.26.0.linux-amd64.tar.gz
 ```
 
 #### Configure Prometheus
@@ -257,8 +257,8 @@ ExecStart=/usr/local/bin/prometheus \
     --config.file /etc/prometheus/prometheus.yml \
     --storage.tsdb.path /var/lib/prometheus/ \
     --web.console.templates=/etc/prometheus/consoles \
-    --web.console.libraries=/etc/prometheus/console_libraries
-
+    --web.console.libraries=/etc/prometheus/console_libraries \
+    --storage.tsdb.retention.time=32d
 [Install]
 WantedBy=multi-user.target
 ```
@@ -281,7 +281,7 @@ sudo apt-get install -y software-properties-common wget
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
 sudo apt-get update
-sudo apt-get install grafana-enterprise
+sudo apt-get install grafana
 ```
 
 #### Setup systemd
@@ -364,11 +364,11 @@ sudo adduser --system node_exporter --group --no-create-home
 #### Install node_exporter
 ```console
 cd
-wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
-tar xzvf node_exporter-1.0.1.linux-amd64.tar.gz
-sudo cp node_exporter-1.0.1.linux-amd64/node_exporter /usr/local/bin/
+wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
+tar xzvf node_exporter-1.1.2.linux-amd64.tar.gz
+sudo cp node_exporter-1.1.2.linux-amd64/node_exporter /usr/local/bin/
 sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
-rm node_exporter-1.0.1.linux-amd64.tar.gz
+rm node_exporter-1.1.2.linux-amd64.tar.gz
 ```
 
 #### Set Up System Service
