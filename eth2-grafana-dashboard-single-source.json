@@ -1036,7 +1036,7 @@
     },
     {
       "datasource": null,
-      "description": "Average inclusion distance of the last attestations by all validators.",
+      "description": "Average inactvity score across all validators.",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1089,7 +1089,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "avg(validator_inclusion_distance)",
+          "expr": "avg(validator_inactivity_score)",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -1098,7 +1098,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Avg. Last Inclusion Distance",
+      "title": "Avg. Inactivity Score",
       "type": "stat"
     },
     {
@@ -1527,7 +1527,7 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "red",
         "#FADE2A",
         "#73BF69"
       ],
@@ -1719,7 +1719,7 @@
       "colors": [
         "#F2495C",
         "#FADE2A",
-        "#299c46"
+        "green"
       ],
       "datasource": null,
       "decimals": 4,
@@ -2459,7 +2459,7 @@
       "colorPostfix": true,
       "colorValue": true,
       "colors": [
-        "#d44a3a",
+        "red",
         "#73BF69",
         "#73BF69"
       ],
@@ -2846,7 +2846,7 @@
           "unit": "short"
         },
         {
-          "alias": "last inclusion distance",
+          "alias": "inactivity score",
           "align": "auto",
           "colorMode": null,
           "colors": [
@@ -2976,7 +2976,7 @@
           "refId": "G"
         },
         {
-          "expr": "label_replace(max by(pubkey) (validator_inclusion_distance{job=\"validator\"}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
+          "expr": "label_replace(max by(pubkey) (validator_inactivity_score{job=\"validator\"}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -3219,7 +3219,7 @@
                 "value": 48
               },
               {
-                "color": "#299c46",
+                "color": "green",
                 "value": 96
               }
             ]
@@ -4137,21 +4137,21 @@
         {
           "expr": "( node_memory_MemTotal_bytes{job=\"node_exporter\"} - node_memory_MemFree_bytes{job=\"node_exporter\"} - node_memory_Buffers_bytes{job=\"node_exporter\"} - node_memory_Cached_bytes{job=\"node_exporter\"} - node_memory_SwapCached_bytes{job=\"node_exporter\"} - node_memory_Slab_bytes{job=\"node_exporter\"} - node_memory_PageTables_bytes{job=\"node_exporter\"} - node_memory_VmallocUsed_bytes{job=\"node_exporter\"} ) or ( node_memory_MemTotal{job=\"node_exporter\"} - node_memory_MemFree{job=\"node_exporter\"} - node_memory_Buffers{job=\"node_exporter\"} - node_memory_Cached{job=\"node_exporter\"} - node_memory_SwapCached{job=\"node_exporter\"} - node_memory_Slab{job=\"node_exporter\"} - node_memory_PageTables{job=\"node_exporter\"} - node_memory_VmallocUsed{job=\"node_exporter\"} )",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "apps",
           "refId": "A"
         },
         {
           "expr": "node_memory_Buffers_bytes{job=\"node_exporter\"} or node_memory_Buffers{job=\"node_exporter\"}",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "buffers",
           "refId": "B"
         },
         {
           "expr": "node_memory_Cached_bytes{job=\"node_exporter\"} or node_memory_Cached{job=\"node_exporter\"}",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "cached",
           "refId": "C"
         },
@@ -4444,5 +4444,5 @@
   "timezone": "",
   "title": "Ethereum 2",
   "uid": "",
-  "version": 100
+  "version": 101
 }
