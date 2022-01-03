@@ -1036,7 +1036,7 @@
     },
     {
       "datasource": null,
-      "description": "Average inactvity score across all validators.",
+      "description": "Current maximum inactvity score across all validators.",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1089,7 +1089,7 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "avg(validator_inactivity_score)",
+          "expr": "max(validator_inactivity_score)",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -1098,7 +1098,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Avg. Inactivity Score",
+      "title": "Max. Inactivity Score",
       "type": "stat"
     },
     {
@@ -2968,12 +2968,6 @@
           "interval": "",
           "legendFormat": "",
           "refId": "D"
-        },
-        {
-          "expr": "label_replace(max by(pubkey) (validator_balance{job=\"validator\"}), \"pubkey\", \"$1\", \"pubkey_short\", \"(.{10}).*\") ",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "G"
         },
         {
           "expr": "label_replace(max by(pubkey) (validator_inactivity_score{job=\"validator\"}), \"pubkey_short\", \"$1\", \"pubkey\", \"(.{10}).*\")  ",
