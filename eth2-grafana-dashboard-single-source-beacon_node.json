@@ -2591,14 +2591,14 @@
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "((validator_count{state=\"Pending\",job=\"beacon node\"}/5)*6.4)",
+          "expr": "((validator_count{state=\"Pending\",job=\"beacon node\"}/6)*6.4)",
           "instant": true,
           "interval": "",
           "legendFormat": "pending",
           "refId": "B"
         },
         {
-          "expr": "((validator_count{state=\"Exiting\",job=\"beacon node\"}/5)*6.4)",
+          "expr": "((validator_count{state=\"Exiting\",job=\"beacon node\"}/6)*6.4)",
           "instant": true,
           "interval": "",
           "legendFormat": "exiting",
