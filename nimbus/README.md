@@ -16,7 +16,7 @@ High level installation instructions for those interested in seeing a more brief
 
 This installation assumes that you are running Nimbus, Grafana, Prometheus, node_exporter, blackbox_exporter, and json_exporter on the same system, and that only default ports are used.
 
-1. Build Nimbus using `NIMFLAGS="-d:insecure"` command-line parameter, following the [Grafana and Prometheus](https://nimbus.guide/metrics-pretty-pictures.html) section of [The Nimbus Book](https://nimbus.guide/)
+1. Build Nimbus, following the [Grafana and Prometheus](https://nimbus.guide/metrics-pretty-pictures.html) section of [The Nimbus Book](https://nimbus.guide/)
 2. Run Nimbus with RPC flags `--metrics`
 3. Install [node_exporter](https://github.com/prometheus/node_exporter) if you would like to see system information, such as CPU utilization, memory use, CPU temperature, disk usage, and network traffic.
 4. If you would like to see ping (network latency) information, install [blackbox_exporter](https://github.com/prometheus/blackbox_exporter) using the following configuration file.
@@ -34,11 +34,13 @@ modules:
 6. Install [json_exporter](https://github.com/prometheus-community/json_exporter) if you would like to see ETH price information. Use the following configuration file.
 
 ```
-metrics:
-- name: ethusd
-  path: "{.ethereum.usd}"
-  help: Ethereum (ETH) price in USD
-  ```
+modules:
+  default:
+    metrics:
+    - name: ethusd
+      path: "{.ethereum.usd}"
+      help: Ethereum (ETH) price in USD
+```
   
 7. Install [Prometheus](https://prometheus.io/) using the following configuration file.
 
@@ -114,10 +116,9 @@ Adapted for Nimbus from my [instructions for setting up a Prysm staking system o
 
 ### Nimbus
 #### Compile Nimbus with Insecure Flag
-Compile Nimbus with the `NIMFLAGS="-d:insecure"` flag, as described in the [Grafana and Prometheus](https://nimbus.guide/metrics-pretty-pictures.html) section of [The Nimbus Book](https://nimbus.guide/).
 
 ```console
-make NIMFLAGS="-d:insecure" nimbus_beacon_node
+make nimbus_beacon_node
 ```
 Install Nimbus in the correct location per your server setup, and update your Nimbus start-up scripts/systemd service files to include the `--metrics` flag on start-up.
 
@@ -134,15 +135,15 @@ Find the URL to the latest amd64 version of Prometheus at https://prometheus.io/
 
 ```console
 cd
-wget https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-2.26.0.linux-amd64.tar.gz
-tar xzvf prometheus-2.26.0.linux-amd64.tar.gz
-cd prometheus-2.26.0.linux-amd64
+wget https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-37.0.linux-amd64.tar.gz
+tar xzvf prometheus-2.37.0.linux-amd64.tar.gz
+cd prometheus-2.37.0.linux-amd64
 sudo cp promtool /usr/local/bin/
 sudo cp prometheus /usr/local/bin/
 sudo chown root:root /usr/local/bin/promtool /usr/local/bin/prometheus
 sudo chmod 755 /usr/local/bin/promtool /usr/local/bin/prometheus
 cd
-rm prometheus-2.26.0.linux-amd64.tar.gz
+rm prometheus-2.37.0.linux-amd64.tar.gz
 ```
 
 #### Configure Prometheus
@@ -366,15 +367,15 @@ sudo adduser --system node_exporter --group --no-create-home
 ```
 
 #### Install node_exporter
-The most current release of node_exporter as of this writing is v1.1.2. If you would like to look for a more recent version, please look [here](https://github.com/prometheus/node_exporter/releases/) and update the instructions below accordingly.
+The most current release of node_exporter as of this writing is v1.3.1. If you would like to look for a more recent version, please look [here](https://github.com/prometheus/node_exporter/releases/) and update the instructions below accordingly.
 
 ```console
 cd
-wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
-tar xzvf node_exporter-1.1.2.linux-amd64.tar.gz
-sudo cp node_exporter-1.1.2.linux-amd64/node_exporter /usr/local/bin/
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+tar xzvf node_exporter-1.3.1.linux-amd64.tar.gz
+sudo cp node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/
 sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
-rm node_exporter-1.1.2.linux-amd64.tar.gz
+rm node_exporter-1.3.1.linux-amd64.tar.gz
 ```
 
 #### Set Up System Service
@@ -412,10 +413,11 @@ sudo systemctl enable node_exporter.service
 ### json_exporter
 #### Install go
 ```console
-sudo apt-get install golang-1.14-go
-
-# Create a symlink from /usr/bin/go to the new go installation
-sudo ln -s /usr/lib/go-1.14/bin/go /usr/bin/go
+cd
+wget https://go.dev/dl/go1.18.4.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz
+sudo ln -s /usr/local/go/bin/go /usr/bin/go
+rm go1.18.4.linux-amd64.tar.gz
 ```
 
 #### Install git
@@ -455,10 +457,12 @@ sudo nano /etc/json_exporter/json_exporter.yml
 Copy and paste the following text into the json_exporter.yml file. 
 
 ```
-metrics:
-  - name: ethusd
-    path: "$.ethereum.usd"
-    help: "Ethereum (ETH) price in USD"
+modules:
+  default:
+    metrics:
+    - name: ethusd
+      path: "{.ethereum.usd}"
+      help: Ethereum (ETH) price in USD
 ```
 
 Change ownership of the configuration file to the json_exporter account.
@@ -506,7 +510,7 @@ I use blackbox_exporter to provide [ping](https://en.wikipedia.org/wiki/Ping_(ne
 
 The Grafana dashboard in these instructions includes a panel with a ping time graph. If you choose not to install blackbox_exporter, simply remove that panel from your Grafana dashboard. It will not show data.
 
-The most current release of node_exporter as of this writing is v0.18.0. If you would like to look for a more recent version, please look [here](https://github.com/prometheus/blackbox_exporter/releases/) and update the instructions below accordingly.
+The most current release of node_exporter as of this writing is v0.21.1. If you would like to look for a more recent version, please look [here](https://github.com/prometheus/blackbox_exporter/releases/) and update the instructions below accordingly.
 
 #### Create User Account
 ```console
@@ -516,9 +520,9 @@ sudo adduser --system blackbox_exporter --group --no-create-home
 #### Install blackbox_exporter
 ```console
 cd
-wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.18.0/blackbox_exporter-0.18.0.linux-amd64.tar.gz
-tar xvzf blackbox_exporter-0.18.0.linux-amd64.tar.gz
-sudo cp blackbox_exporter-0.18.0.linux-amd64/blackbox_exporter /usr/local/bin/
+wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.18.0/blackbox_exporter-0.21.1.linux-amd64.tar.gz
+tar xvzf blackbox_exporter-0.21.1.linux-amd64.tar.gz
+sudo cp blackbox_exporter-0.21.1.linux-amd64/blackbox_exporter /usr/local/bin/
 sudo chown blackbox_exporter:blackbox_exporter /usr/local/bin/blackbox_exporter
 sudo chmod 755 /usr/local/bin/blackbox_exporter
 ```
@@ -532,7 +536,7 @@ sudo setcap cap_net_raw+ep /usr/local/bin/blackbox_exporter
 Remove the original blackbox_exporter package.
 
 ```console
-rm blackbox_exporter-0.18.0.linux-amd64.tar.gz
+rm blackbox_exporter-0.21.1.linux-amd64.tar.gz
 ```
 
 #### Configure blackbox_exporter
