@@ -29,10 +29,12 @@ modules:
 4. Install [json_exporter](https://github.com/prometheus-community/json_exporter) if you would like to see ETH price information. Use the following configuration file.
 
 ```
-metrics:
-- name: ethusd
-  path: "{.ethereum.usd}"
-  help: Ethereum (ETH) price in USD
+modules:
+  default:
+    metrics:
+    - name: ethusd
+      path: "{.ethereum.usd}"
+      help: Ethereum (ETH) price in USD
   ```
   
 5. Install [Prometheus](https://prometheus.io/) using the following configuration file.
@@ -449,10 +451,12 @@ sudo nano /etc/json_exporter/json_exporter.yml
 Copy and paste the following text into the json_exporter.yml file. 
 
 ```
-metrics:
-  - name: ethusd
-    path: "$.ethereum.usd"
-    help: "Ethereum (ETH) price in USD"
+modules:
+  default:
+    metrics:
+    - name: ethusd
+      path: "{.ethereum.usd}"
+      help: Ethereum (ETH) price in USD
 ```
 
 Change ownership of the configuration file to the json_exporter account.
